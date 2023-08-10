@@ -1,0 +1,45 @@
+/* .carrousel-box {
+    width: 70%;
+    margin: 0 auto;
+    object-fit: cover;
+    background-color: rgb(101, 56, 32);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pepe {
+    background-color: rgb(32, 61, 101);
+}
+
+.images {
+    align-items: center;
+    max-height: 100%;
+    max-width: fit-content;
+}
+
+.images img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.carrusel.box .img{
+    background-color: aqua;
+}
+.img3{
+    display: contents;
+    align-items: center;
+    justify-self: center;
+    justify-items: center;
+} */
+
+
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+ }

@@ -1,14 +1,15 @@
-import Carrousel from '../../components/Carrousel/Carrousel'
 import React from 'react'
-import ScrollBar from '../../components/ScrollBar/ScrollBar'
+import './Home.css'
+import LocalCard from '../../components/LocalCard/LocalCard';
+// import CarruselBanner from "../../containers/CarruselBanner/CarruselBanner"
 
 const Home = () => {
   return (
-    <div>
-        <Carrousel />
-        <ScrollBar />
+    <div className='header'>
+        {/* <CarruselBanner />        */}
+        <LocalCard />
     </div>
   )
 }
 
-export default Home
+export default Home;

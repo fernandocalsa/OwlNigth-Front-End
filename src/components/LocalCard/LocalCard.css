@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    max-width: 80%;
+    object-fit: contain;
+    line-height: 1em;
+    border: 2px solid rgb(8, 38, 47);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.card-header {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer {
+    display: inline-flex;
+    flex-direction: row;
+    padding: 15px;
+}
