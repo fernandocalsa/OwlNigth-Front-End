@@ -237,26 +237,9 @@
 
 .frame .outline-24px {
     height: 50px !important;
-    left: 309px !important;
     position: absolute !important;
     top: 8px !important;
     width: 50px !important;
-}
-
-.frame .fiesta-de-la-cerveza {
-    height: 56px;
-    left: 27px;
-    position: absolute;
-    top: 252px;
-    width: 261px;
-}
-
-.frame .rectangle-2 {
-    height: 20px;
-    left: 25px;
-    position: absolute;
-    top: 219px;
-    width: 127px;
 }
 
 .frame .AVAILABLE-SOON {
@@ -326,6 +309,11 @@
     top: 219px;
     width: 150px;
 }
+.hover-effect:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+    filter: opacity(.5);
+  }
 
 .frame .text-wrapper-7 {
     color: #ffffff;

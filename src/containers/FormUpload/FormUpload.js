@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import ButtonAddLocal from '../../components/Button/Button'
+import ButtonAddLocal from '../../components/ButtonAddLocal/Button'
 
 const FormUpload = () => {
   const [file, setFile] = useState(null);

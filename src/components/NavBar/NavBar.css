@@ -1,7 +1,7 @@
 .body {
     height: 100vh;
     color: #ddd;
-    font-family: 'poppons', sans-serif;
+    font-family: "Poppins-Bold", Helvetica;
     font-weight: 500;
 }
 
@@ -56,20 +56,29 @@ div .menu {
     padding: 0;
 }
 
-.menu a {
+a {
     color: inherit;
     font-size: 1rem;
     text-decoration: none;
 }
 
+.menu .logo-container {
+    display: flex;
+    justify-content: start;
+    gap: 5px;
+}
+
 .logo {
-    height: 5em;
-    margin-top: 0.5rem;
-    padding: 10px;
+    max-width: 110px;
+    max-height: 110px;
+    padding-left: 20px;
 }
 
 .name {
-color: #c0f4ff;
+    font-size: 30px;
+    color: #c0f4ff;
+    padding-left: 5px;
+
 }
 
 .menu li a {
@@ -78,27 +87,45 @@ color: #c0f4ff;
     align-items: center;
 }
 
-/* #nav-checkbox:checked~ul.menu li {
-    display: block;
+.bookings {
+    color: #ffffff;
+    font-family: "Poppins-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    top: 0;
 }
 
-#nav-checkbox:checked~label.toogle .close {
-    display: block;
+.bookings:hover {
+    color: #c0f3ff;
 }
 
-#nav-checkbox:checked~label.toogle .menu {
-    display: none;
-} */
+.login {
+    color: #c0f3ff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: none;
+    top: 0;
+    padding-right: 30px;
+}
+
+.login:hover {
+    text-decoration: underline;
+
+}
 
 @media (min-width: 380px) {
     .toogle {
         display: none;
     }
-
     .menu {
         flex-direction: row;
     }
-
     .menu li {
         display: block;
     }

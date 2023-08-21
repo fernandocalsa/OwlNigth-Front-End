@@ -1,15 +1,13 @@
 import React from 'react'
 import './Home.css'
-import Frame from "../FigmaPage/FigmaPage"
+import Frame from "../../containers/HomeFrame/HomeFrame"
 
 const Home = () => {
 
   return (
     <>
-      {/* <div className='header'>
-        <LocalCard />
-      </div> */}
       <Frame />
+      <footer className='foot'>Aquí se acaba la experiencia, SUBE! </footer>
     </>
   )
 }

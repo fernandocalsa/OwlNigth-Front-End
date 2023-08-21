@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import beer from "./imgs/beer.png";
 import disco from "./imgs/allNights.jpg";
 import { Outline24Px } from "../../components/Outline24px/Outline24px";
-import "./FigmaPage.css";
+import "./HomeFrame.css";
 
 const Frame = () => {
     return (
@@ -47,12 +48,11 @@ const Frame = () => {
                 <div className="group-4">
                     <div className="text-wrapper-5">¡NOVEDAD!</div>
                     <div className="div-2">
+                    <Link to="/beerParty" className="hover-effect">
                         <img className="img" alt="Rectangle" src={beer} />
-                        {/* <img className="fiesta-de-la-cerveza" alt="Fiesta de la cerveza" src="fiesta-de-la-cerveza-by-heineken.png" />
-                        <img className="rectangle-2" alt="Rectangle" src="rectangle-1972.png" /> */}
-                        <img className="AVAILABLE-SOON" alt="Available SOON" src="AVAILABLE-SOON.png" />
+                        </Link>
                         <p className="p">Fiesta de la Cerveza <br />
-                         By Heineken</p>
+                            By Heineken</p>
                         <div className="rectangle-4" />
                         <div className="text-wrapper-8">AVAILABLE SOON</div>
                     </div>
@@ -60,10 +60,13 @@ const Frame = () => {
                 <div className="group-5">
                     <div className="text-wrapper-6">All Nigths</div>
                     <div className="div-3">
-                        <img className="img" alt="Rectangle" src={disco} />
+                        <Link to="/locals" className="hover-effect">
+                            <img className="img" alt="Rectangle" src={disco} />
+                        </Link>
                         <p className="p1">Baila por las mejores discotecas de Madrid</p>
                         <div className="rectangle-3" />
                         <div className="text-wrapper-7">MAKE RESERVATION</div>
+
                     </div>
                 </div>
             </div>

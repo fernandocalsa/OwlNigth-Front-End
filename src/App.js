@@ -16,11 +16,11 @@ function App() {
           {/* A PARTIR DE AQUÍ LAS PÁGINAS SE MUESTRAN CON EL HEADERLAYOUT Y EL MENU PRINCIPAL DE LA PÁGINA */}
           <Route path="/locals" element={<Locals />} />
           <Route path="/" element={<Home />} />
-          <Route path="/form" element={<FormUpload />} />
-          {/* <Route path="/" element={<LoginForm />} />
-          <Route path="/buypage" element={<BuyPage />} /> */}
-          {/* <Route path="/library" element={<PlansLibrary />} /> */}
-          
+
+          TODO 
+          {/* <Route path="/" element={<ProManagerHome />} /> */}
+
+          <Route path="/form" element={<FormUpload />} />          
           </Route>
         </Routes>
       </BrowserRouter>

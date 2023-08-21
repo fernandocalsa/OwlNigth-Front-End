@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
-// TODO hacer un menu
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar';
 const HeaderLayout = () => (
     <>
         <NavBar />
@@ -8,4 +7,4 @@ const HeaderLayout = () => (
     </>
 );
 
-export default HeaderLayout
+export default HeaderLayout;
