@@ -7,7 +7,7 @@
 
 div .menu {
     border-bottom: 1.5px solid #172e38;
-    margin-top: 0%;
+    margin-top: 0.5%;
 }
 
 .nav {
@@ -69,8 +69,8 @@ a {
 }
 
 .logo {
-    max-width: 110px;
-    max-height: 110px;
+    max-width: 130px;
+    max-height: 130px;
     padding-left: 20px;
 }
 
