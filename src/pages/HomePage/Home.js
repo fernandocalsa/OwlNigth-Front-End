@@ -1,14 +1,16 @@
 import React from 'react'
 import './Home.css'
-import LocalCard from '../../components/LocalCard/LocalCard';
-// import CarruselBanner from "../../containers/CarruselBanner/CarruselBanner"
+import Frame from "../FigmaPage/FigmaPage"
 
 const Home = () => {
+
   return (
-    <div className='header'>
-        {/* <CarruselBanner />        */}
+    <>
+      {/* <div className='header'>
         <LocalCard />
-    </div>
+      </div> */}
+      <Frame />
+    </>
   )
 }
 

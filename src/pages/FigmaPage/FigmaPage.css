@@ -1,0 +1,364 @@
+.frame {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.frame .rectangle {
+    height: 877px;
+    position: relative;
+    width: 1440px;
+}
+
+.frame .group {
+    height: 174px;
+    left: 188px;
+    position: absolute;
+    top: 159px;
+    width: 292px;
+}
+
+.frame .here-we-have-the {
+    color: transparent;
+    font-family: "Poppins-Regular", Helvetica;
+    font-size: 31px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 31px;
+    position: absolute;
+    text-align: right;
+    top: 60px;
+    width: 285px;
+}
+
+.frame .text-wrapper {
+    color: #c0f4ff;
+    line-height: 37.8px;
+}
+
+.frame .span {
+    color: #54f1f1;
+    font-family: "Poppins-ExtraBold", Helvetica;
+    font-weight: 800;
+    line-height: 37.8px;
+}
+
+.frame .outline {
+    height: 60px !important;
+    left: 230px !important;
+    position: absolute !important;
+    top: 0 !important;
+    width: 60px !important;
+}
+
+.frame .div {
+    height: 364px;
+    left: 544px;
+    position: absolute;
+    top: 438px;
+    width: 372px;
+}
+
+.frame .text-wrapper-2 {
+    color: #ffffff;
+    font-family: "Poppins-Medium", Helvetica;
+    font-size: 16px;
+    font-weight: 500;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 19.5px;
+    position: absolute;
+    top: 0;
+    width: 173px;
+}
+
+.frame .overlap-group {
+    background-image: url(./imgs/party.jpg);
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 329px;
+    left: 0;
+    position: absolute;
+    top: 35px;
+    width: 368px;
+}
+
+.frame .outline-px {
+    height: 50px !important;
+    left: 306px !important;
+    position: absolute !important;
+    top: 8px !important;
+    width: 50px !important;
+}
+
+.frame .prepara-tu-fiesta {
+    color: #ffffff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 26.5px;
+    font-weight: 600;
+    left: 25px;
+    letter-spacing: 0;
+    line-height: 31.7px;
+    position: absolute;
+    top: 239px;
+    width: 199px;
+}
+
+.frame .group-2 {
+    height: 364px;
+    left: 970px;
+    position: absolute;
+    top: 438px;
+    width: 372px;
+}
+
+.frame .text-wrapper-3 {
+    color: #ffffff;
+    font-family: "Poppins-Medium", Helvetica;
+    font-size: 16px;
+    font-weight: 500;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 19.5px;
+    position: absolute;
+    top: 0;
+    width: 157px;
+}
+
+.frame .overlap {
+    background-image: url(./imgs/brides.jpg);
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 329px;
+    left: 0;
+    position: absolute;
+    top: 35px;
+    width: 368px;
+}
+
+.frame .sorprende-a-la-novia {
+    color: #ffffff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 26.5px;
+    font-weight: 600;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: 31.7px;
+    position: absolute;
+    top: 239px;
+    width: 199px;
+}
+
+.frame .group-3 {
+    height: 364px;
+    left: 118px;
+    position: absolute;
+    top: 438px;
+    width: 372px;
+}
+
+.frame .overlap-2 {
+    background-image: url(./imgs/newTalents.jpg);
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 329px;
+    left: 0;
+    position: absolute;
+    top: 35px;
+    width: 368px;
+}
+
+.frame .text-wrapper-4 {
+    color: #ffffff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 26.5px;
+    font-weight: 600;
+    left: 28px;
+    letter-spacing: 0;
+    line-height: 31.7px;
+    position: absolute;
+    top: 239px;
+    width: 220px;
+}
+
+.frame .group-4 {
+    height: 359px;
+    left: 544px;
+    position: absolute;
+    top: 39px;
+    width: 370px;
+}
+
+.frame .text-wrapper-5 {
+    color: #fbab49;
+    font-family: "Poppins-Medium", Helvetica;
+    font-size: 16px;
+    font-weight: 500;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 19.5px;
+    position: absolute;
+    top: 0;
+    width: 157px;
+}
+
+.frame .div-2 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0;
+    position: absolute;
+    top: 30px;
+}
+
+.frame .p {
+    color: #ffffff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 26.5px;
+    font-weight: 600;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: 28.4px;
+    position: absolute;
+    top: 249px;
+    width: 295px;
+}
+
+.frame .img {
+    height: 329px;
+    object-fit: cover;
+    position: relative;
+    width: 368px;
+}
+
+.frame .outline-24px {
+    height: 50px !important;
+    left: 309px !important;
+    position: absolute !important;
+    top: 8px !important;
+    width: 50px !important;
+}
+
+.frame .fiesta-de-la-cerveza {
+    height: 56px;
+    left: 27px;
+    position: absolute;
+    top: 252px;
+    width: 261px;
+}
+
+.frame .rectangle-2 {
+    height: 20px;
+    left: 25px;
+    position: absolute;
+    top: 219px;
+    width: 127px;
+}
+
+.frame .AVAILABLE-SOON {
+    height: 7px;
+    left: 34px;
+    position: absolute;
+    top: 226px;
+    width: 106px;
+}
+
+.frame .group-5 {
+    height: 361px;
+    left: 970px;
+    position: absolute;
+    top: 37px;
+    width: 370px;
+}
+
+.frame .text-wrapper-6 {
+    color: #fb33a8;
+    font-family: "Poppins-Medium", Helvetica;
+    font-size: 16px;
+    font-weight: 500;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 19.5px;
+    position: absolute;
+    top: 0;
+    width: 157px;
+}
+
+/* ALLNIGHTS-BOX-STRUCTURE */
+
+.frame .div-3 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0;
+    position: absolute;
+    top: 32px;
+}
+
+/* ALLNIGHTS-BOX-TEXT */
+
+.frame .p1 {
+    color: #ffffff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 26.5px;
+    font-weight: 600;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: 28.4px;
+    position: absolute;
+    top: 249px;
+    width: 295px;
+}
+
+/* NOVEDAS Y ALLNIGHTS */
+
+.frame .rectangle-3 {
+    background-color: #fb33a8;
+    border-radius: 8.53px;
+    height: 20px;
+    left: 36px;
+    position: absolute;
+    top: 219px;
+    width: 150px;
+}
+
+.frame .text-wrapper-7 {
+    color: #ffffff;
+    font-family: "Poppins-Medium", Helvetica;
+    font-size: 10.2px;
+    font-weight: 500;
+    left: 45px;
+    letter-spacing: 1.83px;
+    line-height: 12.2px;
+    position: absolute;
+    top: 222px;
+    width: 134px;
+}
+
+.frame .rectangle-4 {
+    background-color: #fbab49;
+    border-radius: 8.53px;
+    height: 20px;
+    left: 36px;
+    position: absolute;
+    top: 219px;
+    width: 127px;
+}
+
+.frame .text-wrapper-8 {
+    color: #ffffff;
+    font-family: "Poppins-Medium", Helvetica;
+    font-size: 10.2px;
+    font-weight: 500;
+    left: 45px;
+    letter-spacing: 1.83px;
+    line-height: 12.2px;
+    position: absolute;
+    top: 222px;
+    width: 134px;
+}

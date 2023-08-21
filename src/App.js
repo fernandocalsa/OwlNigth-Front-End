@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderLayout from './components/HeaderLayout/HeaderLayout';
 import LoginAndRegister from './containers/Login&RegisterForm/Login&Register';
 import Home from './pages/HomePage/Home';
-import Locales from './pages/Locales/Locales';
+import Locals from './pages/LocalsPage/LocalsPage';
+import FormUpload from './containers/FormUpload/FormUpload';
 
 function App() {
   return (
@@ -13,12 +14,13 @@ function App() {
           <Route path="/login&register" element={<LoginAndRegister />} />
           <Route element={<HeaderLayout />}>
           {/* A PARTIR DE AQUÍ LAS PÁGINAS SE MUESTRAN CON EL HEADERLAYOUT Y EL MENU PRINCIPAL DE LA PÁGINA */}
-          <Route path="/locals" element={<Locales />} />
+          <Route path="/locals" element={<Locals />} />
           <Route path="/" element={<Home />} />
+          <Route path="/form" element={<FormUpload />} />
           {/* <Route path="/" element={<LoginForm />} />
           <Route path="/buypage" element={<BuyPage />} /> */}
           {/* <Route path="/library" element={<PlansLibrary />} /> */}
-          {/* <Route path="/form" element={<FormUpload />} /> */}
+          
           </Route>
         </Routes>
       </BrowserRouter>
