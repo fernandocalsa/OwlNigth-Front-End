@@ -12,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login&register" element={<LoginAndRegister />} />
+
           <Route element={<HeaderLayout />}>
           {/* A PARTIR DE AQUÍ LAS PÁGINAS SE MUESTRAN CON EL HEADERLAYOUT Y EL MENU PRINCIPAL DE LA PÁGINA */}
           <Route path="/locals" element={<Locals />} />

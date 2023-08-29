@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <>
       <Frame />
-      <footer className='foot'>Aquí se acaba la experiencia, SUBE! </footer>
     </>
   )
 }

@@ -6,12 +6,12 @@ function NavBar() {
 
     return (
         <>
-            <div>
-                <input type='checkbox' id='nav-checkbox' className='nav-checkbox' />
-                <label for='nav-checkbox' className='toogle'>
-                    <img className='menu' src='menu.png' alt='menu' />
-                    <img className='close' src='close.png' alt='close' />
-                </label>
+            <div className='div'>
+                {/* <input type='checkbox' id='nav-checkbox' className='nav-checkbox' />
+                <label for='nav-checkbox' className='toogle'> */}
+                    {/* <img className='menu' src='menu.png' alt='menu' />
+                    <img className='close' src='close.png' alt='close' /> */}
+                {/* </label> */}
                 <ul className='menu'>
                     <li className='logo-container'>
                         <a href='/'>
@@ -19,7 +19,7 @@ function NavBar() {
                             <h1 className='name'>OwlNight</h1>
                         </a>
                     </li>
-                    <li><a className='bookings' href='/reser'>Reservas</a></li>
+                    <li><a className='bookings' href='/library'>Reservas</a></li>
                     <li><a className='login' href='/login&register'>Login</a></li>
 
                 </ul>

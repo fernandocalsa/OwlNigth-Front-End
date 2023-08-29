@@ -1,10 +1,30 @@
 .frame {
+    display: flex;
     align-items: flex-start;
-    display: inline-flex;
+    
     flex-direction: column;
     gap: 10px;
     position: relative;
 }
+/* @media (min-width: 380px) {
+    .frame {
+        flex-direction: row;
+    }
+
+    .menu li {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+} */
+
+@media screen and (min-width: 30em) and (orientation: landscape) {
+  .frame .rectangle{
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 
 .frame .rectangle {
     height: 877px;

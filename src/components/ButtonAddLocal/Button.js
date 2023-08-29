@@ -1,35 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import apiServiceInstance from '../../connect/apiService';
+import { Link } from 'react-router-dom';
 
-//TODO 
-// ESTE ES EL BOTÓN PARA AÑADIR LOS LOCALES A LA BASE DE DATOS
+const PruebaPost = () => {
+  const [discoName, setDiscoName] = useState('');
+  const [deals, setDeals] = useState('');
+  const [message, setMessage] = useState('');
+  const [imgUrl, setimgUrl] = useState(null);
+  const [redirect, setRedirect] = useState(false);
 
-const ButtonAddLocal = ({ children }) => {
-  const handleAddLocal = async (event) => {
-    event.preventDefault(); // Evita el envío del formulario por defecto
-  
-    // Obtén los valores de los campos del formulario
-    const formData = new FormData(event.target);
-  
+  const handleImageChange = (event) => {
+    setimgUrl(event.target.files[0]);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(event, "este es el evento");
+
+    const formData = new FormData();
+    formData.append('discoName', discoName);
+    formData.append('deals', deals);
+    formData.append('imgUrl', imgUrl);
+
     try {
-      // Llama a la función de API para agregar el local
-      const response = await apiServiceInstance.addLocal(formData);
-  
-      console.log('Local añadido:', response.message);
-      // Lógica adicional después de agregar el local
+      const response = await axios.post(apiServiceInstance.addLocal(formData), formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setMessage('Local added successfully');
+      setRedirect(true);
+      console.log('Response:', response.data);
     } catch (error) {
-      console.error('Error al añadir el local:', error);
+      console.error('Error:', error);
     }
   };
-  
 
   return (
     <div>
-      <form onSubmit={handleAddLocal}>
-        <button type="submit">{children}</button>
+      <h2>Prueba de Solicitud POST</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="discoName">Disco Name:</label>
+          <input
+            type="text"
+            id="discoName"
+            value={discoName}
+            onChange={(e) => setDiscoName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="deals">Deals:</label>
+          <input
+            type="number"
+            id="deals"
+            value={deals}
+            onChange={(e) => setDeals(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="imgUrl">Image:</label>
+          <input
+            type="file"
+            id="imgUrl"
+            onChange={handleImageChange}
+            required
+          />{console.log(imgUrl)}
+        </div>
+        <button type="submit" >Enviar Solicitud POST: {redirect && <Link to="/locals" />}</button>
       </form>
+      
+      {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default ButtonAddLocal;
+export default PruebaPost;

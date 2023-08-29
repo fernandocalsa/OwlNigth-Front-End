@@ -5,16 +5,16 @@
     font-weight: 500;
 }
 
-div .menu {
+.div .menu {
     border-bottom: 1.5px solid #172e38;
     margin-top: 0.5%;
 }
 
-.nav {
+/* .nav {
     background-color: #333;
     padding-left: 1rem;
-}
-
+} */
+/* 
 .toogle {
     position: absolute;
     top: 0.7rem;
@@ -35,11 +35,10 @@ div .menu {
 
 .nav-checkbox {
     display: none;
-}
+} */
 
 .menu {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin: 3em;
 }
@@ -116,17 +115,16 @@ a {
 
 .login:hover {
     text-decoration: underline;
-
 }
 
 @media (min-width: 380px) {
-    .toogle {
-        display: none;
-    }
     .menu {
         flex-direction: row;
     }
+
     .menu li {
-        display: block;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
     }
 }

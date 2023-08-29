@@ -1,0 +1,121 @@
+.loginFrame {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0D171B;
+}
+
+.owlBackground {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 67%;
+    height: 100vh;
+    background-size: cover;
+    transform: translateX(-50%);
+    background-position: left;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+    mix-blend-mode: color-dodge;
+    opacity: 0.2;
+
+}
+
+.formContainer {
+    width: 50%;
+    /* background-color: white; */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+    position: absolute;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginOverlap {
+    width: 100%;
+    max-width: 1440px;
+    /* background-color: white; */
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.loginGroup {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.loginGroup-wrapper {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+.owlImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    /* background-color: #46b1b81f; */
+    border-radius: 8px;
+}
+
+.text-init {
+    color: #C0F4FF;
+}
+
+label {
+    color: #C0F4FF;
+}
+
+.form-wrapper {
+    width: 100%;
+
+}
+
+form .input-field {
+    width: 100%;
+    /* Ajustar el ancho del campo */
+    padding: 10px;
+    /* Añadir relleno interno */
+    margin: 5px 0;
+    /* Añadir márgenes superior e inferior */
+    border: 0px solid #ccc;
+    /* Añadir borde */
+    border-radius: 5px;
+    /* Añadir esquinas redondeadas */
+    font-size: 16px;
+    /* Tamaño de fuente */
+    background-color: #163439;
+}
+
+.button-wrapper {
+    background-color: #52E8E9;
+    border-radius: 8px;
+    border: 0px solid #52E8E9;
+    height: 36px;
+    opacity: 0.8;
+    margin: 20px;
+    width: 50%;
+    color: #ffffff;
+    font-size: 18px;
+
+}
