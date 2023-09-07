@@ -5,6 +5,15 @@ import { Link } from "react-router-dom";
 import ListCards from "../../containers/ListCards/ListCards";
 
 const Locals = () => {
+
+//Crear boton editar para PATCH de locales
+
+  // const [edit, setEdit] = useState(false);
+
+  // const handleEdit = () => {
+
+  // }
+
   return (
     <>
       {/* BANNER Y OFERTAS */}
@@ -22,27 +31,17 @@ const Locals = () => {
                 <span className="span">OFF</span>
               </p>
               <p className="p">Make your firs reservation and get</p>
-
+              <div className="button-container">
+                <Link to="/form">
+                  <button className="add-local">Añadir Local</button>
+                </Link>
+                <button className="edit-local">Editar</button>
+              </div>
             </div>
             <ListCards />
-            {/* <MyComponent /> */}
           </div>
-
-          {/* TITLE */}
           <div className="text-wrapper-5">All Nigths</div>
-
-
-          {/* AQUÍ EMPIEZAN LAS CARDS */}
-          
-
         </div>
-      </div>
-      {/* FORMULARIO */}
-      <div>
-        <Link to="/form">
-          <button className="add-local">Añadir Local</button>
-        </Link>
-        <button className="edit-local">Editar</button>
       </div>
     </>
   )

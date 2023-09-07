@@ -23,7 +23,6 @@
 
 .formContainer {
     width: 50%;
-    /* background-color: white; */
     border-radius: 10px;
     padding: 20px;
     margin: 0 auto;
@@ -38,7 +37,6 @@
 .loginOverlap {
     width: 100%;
     max-width: 1440px;
-    /* background-color: white; */
     border-radius: 10px;
     padding: 20px;
     display: flex;
@@ -74,7 +72,6 @@ form {
     align-items: center;
     height: auto;
     width: auto;
-    /* background-color: #46b1b81f; */
     border-radius: 8px;
 }
 
@@ -93,17 +90,11 @@ label {
 
 form .input-field {
     width: 100%;
-    /* Ajustar el ancho del campo */
     padding: 10px;
-    /* Añadir relleno interno */
     margin: 5px 0;
-    /* Añadir márgenes superior e inferior */
     border: 0px solid #ccc;
-    /* Añadir borde */
     border-radius: 5px;
-    /* Añadir esquinas redondeadas */
     font-size: 16px;
-    /* Tamaño de fuente */
     background-color: #163439;
 }
 
@@ -118,4 +109,24 @@ form .input-field {
     color: #ffffff;
     font-size: 18px;
 
+}
+
+
+.close-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    align-self: flex-end;
+    margin: 15px;
+    color: #C0F4FF;
+    background-color: transparent;
+    border: 0px solid #0D171B;
+    padding-right: 20px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.close-button:hover {
+    transform: scale(1.3);
 }

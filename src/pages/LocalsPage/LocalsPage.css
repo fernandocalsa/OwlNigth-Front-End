@@ -23,7 +23,6 @@
   height: auto;
   top: 37px;
   width: 1440px;
-  /*   width: 1440px; */
 }
 
 .desktop .overlap-group {
@@ -31,7 +30,6 @@
   position: absolute;
   top: 138px;
   width: inherit;
-  /*   width: 1440px; */
   left: 50%;
   transform: translateX(-50%);
 }
@@ -49,21 +47,15 @@
 }
 
 @media screen and (max-width: 768px) {
-
-  /* Estilos para pantallas más pequeñas, como dispositivos móviles */
   .desktop .div {
     width: 100%;
-    /* La anchura del contenedor se ajustará al 100% en pantallas más pequeñas */
   }
 }
 
 @media screen and (min-width: 1200px) {
   .desktop .rectangle {
     width: 100%;
-    /* Ancho fijo para pantallas más grandes si lo deseas */
   }
-
-  /* Ajustes adicionales para la imagen de banner u otros elementos si es necesario */
 }
 
 
@@ -185,4 +177,34 @@
   top: 600px;
   width: 198px;
   text-align: center;
+}
+
+
+/* Botones de edit */
+
+.button-container {
+  position: relative;
+  top: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+} 
+
+.add-local,
+.edit-local {
+  background-color: #12847c;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s;
+} 
+
+.add-local:hover,
+.edit-local:hover {
+  background-color: #fb33a8;
 }

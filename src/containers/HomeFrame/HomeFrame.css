@@ -1,35 +1,26 @@
 .frame {
     display: flex;
     align-items: flex-start;
-    
     flex-direction: column;
     gap: 10px;
-    position: relative;
 }
-/* @media (min-width: 380px) {
-    .frame {
-        flex-direction: row;
-    }
-
-    .menu li {
-        display: flex;
-        flex-direction: row;
-        justify-content: end;
-    }
-} */
 
 @media screen and (min-width: 30em) and (orientation: landscape) {
-  .frame .rectangle{
-    max-width: 100%;
-    height: auto;
-  }
+    .frame .rectangle {
+        max-width: 100%;
+        height: auto;
+    }
 }
-
 
 .frame .rectangle {
     height: 877px;
     position: relative;
     width: 1440px;
+    right: 1%;
+    top: 390px;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    
 }
 
 .frame .group {
@@ -43,7 +34,7 @@
 .frame .here-we-have-the {
     color: transparent;
     font-family: "Poppins-Regular", Helvetica;
-    font-size: 31px;
+    font-size: 41px;
     font-weight: 400;
     left: 0;
     letter-spacing: 0;
@@ -51,7 +42,7 @@
     position: absolute;
     text-align: right;
     top: 60px;
-    width: 285px;
+    width: 325px;
 }
 
 .frame .text-wrapper {
@@ -103,7 +94,7 @@
     left: 0;
     position: absolute;
     top: 35px;
-    width: 368px;
+    width: 400px;
 }
 
 .frame .outline-px {
@@ -156,7 +147,8 @@
     left: 0;
     position: absolute;
     top: 35px;
-    width: 368px;
+    width: 400px;
+
 }
 
 .frame .sorprende-a-la-novia {
@@ -188,7 +180,7 @@
     left: 0;
     position: absolute;
     top: 35px;
-    width: 368px;
+    width: 400px;
 }
 
 .frame .text-wrapper-4 {
@@ -252,7 +244,7 @@
     height: 329px;
     object-fit: cover;
     position: relative;
-    width: 368px;
+    width: 400px;
 }
 
 .frame .outline-24px {
@@ -329,23 +321,24 @@
     top: 219px;
     width: 150px;
 }
+
 .hover-effect:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
     filter: opacity(.5);
-  }
+}
 
 .frame .text-wrapper-7 {
     color: #ffffff;
     font-family: "Poppins-Medium", Helvetica;
     font-size: 10.2px;
-    font-weight: 500;
-    left: 45px;
+    font-weight: 700;
+    left: 44px;
     letter-spacing: 1.83px;
     line-height: 12.2px;
     position: absolute;
-    top: 222px;
-    width: 134px;
+    top: 223px;
+    width: 140px;
 }
 
 .frame .rectangle-4 {
@@ -362,8 +355,8 @@
     color: #ffffff;
     font-family: "Poppins-Medium", Helvetica;
     font-size: 10.2px;
-    font-weight: 500;
-    left: 45px;
+    font-weight: 800;
+    left: 42px;
     letter-spacing: 1.83px;
     line-height: 12.2px;
     position: absolute;

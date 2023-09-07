@@ -1,12 +1,12 @@
 import "./FormUpload.css"
 import React from 'react';
-import PruebaPost from "../../components/ButtonAddLocal/Button";
+import AddLocal from "../../components/AddLocal/AddLocal";
 
 const FormUpload = () => {
 
   return (
     <div className='container-form'>
-      <PruebaPost />
+      <AddLocal />
     </div>
   );
 };

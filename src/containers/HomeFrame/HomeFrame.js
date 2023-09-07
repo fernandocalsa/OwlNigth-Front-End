@@ -2,10 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom"
 import beer from "./imgs/beer.png";
 import disco from "./imgs/allNights.jpg";
+import party from "./imgs/party.jpg";
+import brides from "./imgs/brides.jpg";
+import newTalents from "./imgs/newTalents.jpg";
 import { Outline24Px } from "../../components/Outline24px/Outline24px";
 import "./HomeFrame.css";
 
 const Frame = () => {
+
+
     return (
         <>
             <div className="frame">
@@ -23,27 +28,33 @@ const Frame = () => {
                     </div>
                     <div className="div">
                         <div className="text-wrapper-2">Your own Party</div>
-                        <div className="overlap-group">
-                            <div className="prepara-tu-fiesta">
-                                Prepara tu <br />
-                                fiesta perfecta
+                        <Link to="/party" className="hover-effect">
+                            <div className="overlap-group" style={{ backgroundImage: `url(${party})` }}>
+                                <div className="prepara-tu-fiesta">
+                                    Prepara tu <br />
+                                    fiesta perfecta
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                     <div className="group-2">
                         <div className="text-wrapper-3">Despedidas</div>
-                        <div className="overlap">
-                            <div className="sorprende-a-la-novia">
-                                Sorprende
-                                <br />a la novia
+                        <Link to="/brides" className="hover-effect">
+                            <div className="overlap" style={{ backgroundImage: `url(${brides})` }}>
+                                <div className="sorprende-a-la-novia">
+                                    Sorprende
+                                    <br />a la novia
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                     <div className="group-3">
                         <div className="text-wrapper-3">Conciertos</div>
-                        <div className="overlap-2">
-                            <div className="text-wrapper-4">Descubre nuevos talentos</div>
-                        </div>
+                        <Link to="/concerts" className="hover-effect">
+                            <div className="overlap-2" style={{ backgroundImage: `url(${newTalents})` }}>
+                                <div className="text-wrapper-4">Descubre nuevos talentos</div>
+                            </div>
+                        </Link>
                     </div>
                     <div className="group-4">
                         <div className="text-wrapper-5">¡NOVEDAD!</div>
