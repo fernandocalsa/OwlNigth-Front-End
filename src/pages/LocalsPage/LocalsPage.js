@@ -3,10 +3,12 @@ import "./LocalsPage.css";
 import deals from "./imgs/deals.jpg"
 import { Link } from "react-router-dom";
 import ListCards from "../../containers/ListCards/ListCards";
+import { useAuth } from "../../components/AuthContext/AuthContext"
 
 const Locals = () => {
+  const { token, isProManager } = useAuth;
 
-//Crear boton editar para PATCH de locales
+  //Crear boton editar para PATCH de locales
 
   // const [edit, setEdit] = useState(false);
 
@@ -32,10 +34,14 @@ const Locals = () => {
               </p>
               <p className="p">Make your firs reservation and get</p>
               <div className="button-container">
-                <Link to="/form">
-                  <button className="add-local">Añadir Local</button>
-                </Link>
-                <button className="edit-local">Editar</button>
+              {token && isProManager && (// Verificar si el usuario está autenticado como ProManager
+                  <div>
+                    <Link to="/form">
+                      <button className="add-local">Añadir Local</button>
+                    </Link>
+                    <button className="edit-local">Editar</button>
+                  </div>
+                )}
               </div>
             </div>
             <ListCards />

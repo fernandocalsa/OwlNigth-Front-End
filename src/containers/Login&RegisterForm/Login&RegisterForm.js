@@ -26,7 +26,13 @@ const LoginAndRegister = () => {
         console.log(response.data, "este es el response.data");
         console.log(response.data.token, "este es el response.data.token");
         login(response.data.token);
-        navigate("/");
+        const pendingLocalReservation = JSON.parse(localStorage.getItem("pendingLocalReservation"));
+        if (pendingLocalReservation) {
+          localStorage.removeItem("pendingLocalReservation"); // Elimina el local pendiente después de usarlo.
+          navigate(`/local/${pendingLocalReservation.id}`);
+        } else {
+          navigate("/");
+        }
       }
 
       if (typeof token === 'string' && token.trim() !== '') {

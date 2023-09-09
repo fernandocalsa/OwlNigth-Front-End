@@ -1,4 +1,4 @@
-const sessionTime = 60 * 60 * 1000;
+const sessionTime = 60 * 60 * 2000;
 
 export const sessionExpired = () => {
   const sessionStartTime = localStorage.getItem('sessionStartTime');

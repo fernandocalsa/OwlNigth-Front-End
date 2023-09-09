@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext/AuthContext';
 
 function NavBar() {
-    const {token} =  useAuth();
+    const { token } = useAuth();
 
     return (
         <>
@@ -17,18 +17,24 @@ function NavBar() {
                             <h1 className='name'>OwlNight</h1>
                         </a>
                     </li>
-                    <li><a className='bookings' href='/library'>Reservas</a></li>
-                    <li><a className='login' href='/login&register'>
-                        {token ? (
-                            // Mostrar el perfil del usuario si está autenticado
-                            <div>
+                    {token ? (
+                        <>
+                            <li>
+                                <Link className='bookings' to='/library'>
+                                    Reservas
+                                </Link>
+                            </li>
+                            <li className='mi-perfil'>
                                 <Link to="/user-profile">Mi Perfil</Link>
-                            </div>
-                        ) : (
-                            // Mostrar el enlace de inicio de sesión si no está autenticado
-                            <Link to="/login&register">Iniciar Sesión</Link>
-                        )}
-                    </a></li>
+                            </li>
+                        </>
+                    ) : (
+                        <li>
+                            <Link className='login' to='/login&register'>
+                                Iniciar Sesión
+                            </Link>
+                        </li>
+                    )}
 
                 </ul>
             </div>

@@ -6,6 +6,7 @@ const instance = axios.create({
 
 const apiServiceInstance = {
 
+  //para traer todos los locales a ALLNIGHT
   getAllPlans: async () => {
     try {
       const response = await instance.get('/locals')
@@ -15,6 +16,7 @@ const apiServiceInstance = {
     }
   },
 
+  //Login de usersNight y proManager - no me reconoce proPassword (false)
   usersLogin: async (usersName, password) => {
     try {
       const response = await instance.post('/usersnight/login', {
@@ -25,7 +27,6 @@ const apiServiceInstance = {
 
       if (response.status === 200) {
         const responseData = response.data;
-        console.log(responseData.message, "esto es el error");
         return {
           success: true,
           token: responseData.token,
@@ -38,7 +39,6 @@ const apiServiceInstance = {
           errorMessage: 'Credenciales inválidas',
         };
       }
-
     } catch (error) {
       console.error('Error en usersLogin:', error);
       return {
@@ -49,10 +49,9 @@ const apiServiceInstance = {
     }
   },
 
+  //revisar función - algo me falla si la quito, me interfiere en la del login normal? - revisar
   loginProManager: async (proName, password) => {
-
     //crear el login en el front
-
     const response = await instance.post('/proManager/loginpro', {
       proName,
       password,
@@ -72,9 +71,9 @@ const apiServiceInstance = {
         errorMessage: 'Credenciales inválidas',
       };
     }
-
   },
 
+  //usersNight Register
   registerUserNight: async (usersName, email, password, dni, age) => {
     try {
       const response = await instance.post("/usersNight", {
@@ -91,6 +90,17 @@ const apiServiceInstance = {
     }
   },
 
+  //revisar función - para traer los usuarios al proManager
+  getUsersNight: async () => {
+    try {
+      const response = await instance.get('/');
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener usuarios nocturnos:', error);
+      throw error;
+    }
+  },
+
   addLocal: async (localData) => {
     try {
       const response = await instance.post('/locals/add/upload', localData);
@@ -103,8 +113,7 @@ const apiServiceInstance = {
 
 
   //revisar - no funciona!
-  getUser: async (data) => {
-
+  getUserData: async (data) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -116,6 +125,7 @@ const apiServiceInstance = {
         },
       };
       const response = await instance.get('/usersnight/me', config);
+      console.log(response.data, "este es el response.data de la petición");
       return response.data;
     } catch (error) {
       console.error('Error al obtener datos del usuario:', error);
@@ -123,35 +133,56 @@ const apiServiceInstance = {
     }
   },
 
-  updateAvatar: async (avatarImg) => {
+  getLocalById: async (localById) => {
     try {
-      const formData = new FormData();
-      formData.append('avatar', avatarImg);
-
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('Usuario no autenticado');
-      }
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      };
-
-      const response = await instance.post('/usersnight/me/avatar', formData, config);
-
+      console.log(localById, "este es el parámetro que le doy a la función, tiene el id del local")
+      const response = await instance.get(`/locals/${localById}`);
+      console.log(response, "este es el response del ApiService")
       if (response.status === 200) {
-        console.log('Imagen de avatar actualizada con éxito');
+        console.log(response.data, "esto es la respuesda del servidor a getLocalById")
+        return response.data;
+
       } else {
-        console.error('Error al actualizar la imagen de avatar:', response.data);
-        throw new Error('Error al actualizar la imagen de avatar');
+        console.log("no se han encontrado los datos del local")
       }
     } catch (error) {
-      console.error('Error al actualizar la imagen de avatar:', error);
-      throw error;
+      console.log("no se ha encontrado el id del local")
     }
-  }
+  },
+
+
+
+  //Función para cambiar la imagen del Avatar - no funciona-----------------------
+
+  // updateAvatar: async (avatarImg) => {
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append('avatar', avatarImg);
+
+  //     const token = localStorage.getItem('token');
+  //     if (!token) {
+  //       throw new Error('Usuario no autenticado');
+  //     }
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     };
+
+  //     const response = await instance.post('/usersnight/me/avatar', formData, config);
+
+  //     if (response.status === 200) {
+  //       console.log('Imagen de avatar actualizada con éxito');
+  //     } else {
+  //       console.error('Error al actualizar la imagen de avatar:', response.data);
+  //       throw new Error('Error al actualizar la imagen de avatar');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error al actualizar la imagen de avatar:', error);
+  //     throw error;
+  //   }
+  // }
 
 };
 

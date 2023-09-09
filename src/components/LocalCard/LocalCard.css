@@ -9,7 +9,7 @@
 .desktop .overlap-group-2 {
   height: 525px;
   position: relative;
-  width: 371px;
+  /* width: 371px; */
   border-radius: 15.498px;
   background-color: #304C51;
 }
@@ -25,13 +25,19 @@
 }
 
 .desktop .rectangle-3 {
-  background-color: #fb33a8;
+  background-color: #46B2B9;
   border-radius: 10.33px;
   height: 44px;
   left: 55px;
   position: absolute;
   top: 460px;
   width: 259px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+border: none;
+}
+.desktop .rectangle-3:hover {
+  background-color: #54f1f1f8; /* Cambiar el color de fondo al pasar el cursor */
+  text-shadow: 0px 0px 12px #152b2b; /* Agregar un efecto de sombra al texto */
 }
 
 .desktop .text-wrapper-6 {
@@ -43,14 +49,9 @@
   letter-spacing: 3.72px;
   line-height: 24.8px;
   position: absolute;
-  top: 470px;
-  width: 131px;
+  top: 20%;
+  left: 50px;
 }
-
-.rectangle-3:hover{
-  background-color: #e9dae3;
-}
-
 .desktop .element-entrada-antes-de {
   color: #f1f1f1;
   font-family: "Poppins-Medium", Helvetica;

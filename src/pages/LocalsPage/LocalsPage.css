@@ -208,3 +208,14 @@
 .edit-local:hover {
   background-color: #fb33a8;
 }
+
+.desktop .element-OFF:hover {
+  color: #fb33a8; /* Cambia el color al pasar el ratón a rosa */
+  text-shadow: 0px 2.97px 7px #fb33a8; /* Agrega un efecto de sombra rosa */
+  /* Otras propiedades para el hover */
+}
+.desktop .p:hover {
+  color: #fbfafb;
+  text-shadow: 2px 2.97px 7px #fb33a8;/* Cambia el color del texto a rosa al pasar el ratón */
+  /* Agregar cualquier otra propiedad deseada para el hover */
+}

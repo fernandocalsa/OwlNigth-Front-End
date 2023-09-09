@@ -8,6 +8,7 @@ import LoginPage from './pages/Login&RegisterPage/Login&RegisterPage';
 import Profile from './pages/UserProfile/UserProfile';
 import UserLibraryPage from './pages/UserLibraryPage/UserLibraryPage';
 import { AuthProvider } from './components/AuthContext/AuthContext';
+import BookingPage from './pages/BookingsPage/BookingsPage';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/user-profile" element={<Profile />} />
               <Route path="/library" element={<UserLibraryPage />} />
+              <Route path="/booking/:localId" element={<BookingPage />} />
+              <Route path="/booking" element={<BookingPage />} />
               TODO
               {/* <Route path="/" element={<ProManagerHome />} /> */}
             </Route>

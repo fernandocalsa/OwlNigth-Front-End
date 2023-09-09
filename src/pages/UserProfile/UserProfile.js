@@ -23,7 +23,7 @@ const Profile = () => {
     // const navigate = useNavigate();
 
     useEffect(() => {
-        apiServiceInstance.getUser()
+        apiServiceInstance.getUserData()
             .then(response => {
                 setDataUser(response);
             })
@@ -32,35 +32,38 @@ const Profile = () => {
             });
     }, []);
 
-    const handleAvatarChange = (event) => {
-        const selected = event.target.files[0];
-        if (selected) {
-            setSelectedAvatar(selected);
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setAvatarImg(e.target.result);
-            };
-            reader.readAsDataURL(selected);
-        }
-    };
-    const handleEditAvatar = async () => {
-        try {
-            if (selectedAvatar) {
-                // Llama a la función de apiServiceInstance para actualizar el avatar
-                const response = await apiServiceInstance.updateAvatar(selectedAvatar);
+    // const handleAvatarChange = (event) => {
+    //     const selected = event.target.files[0];
+    //     if (selected) {
+    //         setSelectedAvatar(selected);
+    //         const reader = new FileReader();
+    //         reader.onload = (e) => {
+    //             setAvatarImg(e.target.result);
+    //         };
+    //         reader.readAsDataURL(selected);
+    //     }
+    // };
+    // const handleEditAvatar = async () => {
+    //     try {
+    //         if (selectedAvatar) {
+    //             // Llama a la función de apiServiceInstance para actualizar el avatar
+    //             const response = await apiServiceInstance.updateAvatar(selectedAvatar);
 
-                // Actualiza el estado o realiza otras acciones si es necesario
-                console.log('Imagen de avatar actualizada con éxito.');
-                setAvatarImg(response.data.avatarUrl); // Actualiza la URL del avatar
-                setEditAvatar(false); // Deja de editar el avatar
-            } else {
-                console.error('Debes seleccionar una imagen de avatar.');
-            }
-        } catch (error) {
-            console.error('Error al actualizar la imagen de avatar:', error);
-        }
-    };
+    //             // Actualiza el estado o realiza otras acciones si es necesario
+    //             console.log('Imagen de avatar actualizada con éxito.');
+    //             setAvatarImg(response.data.avatarUrl); // Actualiza la URL del avatar
+    //             setEditAvatar(false); // Deja de editar el avatar
+    //         } else {
+    //             console.error('Debes seleccionar una imagen de avatar.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error al actualizar la imagen de avatar:', error);
+    //     }
+    // };
 
+
+
+    //FUTURA FUNCIÓN - EDITAR LOS DATOS DEL USUARIO, CON VALIDACIÓN
     // const handleEditClick = () => {
     //     setEdit(true);
     // };
@@ -90,7 +93,7 @@ const Profile = () => {
             <input
                 type="file"
                 accept="image/*"
-                onChange={handleAvatarChange}
+                // onChange={handleAvatarChange}
                 style={{ display: 'none' }}
                 id="avatar-input"
             />
@@ -102,7 +105,9 @@ const Profile = () => {
                     Editar imagen de perfil
                 </label>
                 {editAvatar && (
-                <button className="save-avatar-button" onClick={handleEditAvatar}>
+                <button className="save-avatar-button"
+                // onClick={handleEditAvatar}
+                >
                     Guardar imagen de perfil
                 </button>
             )}

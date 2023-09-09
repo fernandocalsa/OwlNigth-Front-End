@@ -1,43 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LocalCard.css";
+import apiServiceInstance from "../../connect/apiService";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext/AuthContext";
+
 
 const LocalCard = ({ localInfo }) => {
+  const { token, setLocalData  } = useAuth();
+  const navigate = useNavigate();
 
-
-   
-//PONER FUNCIÓN PARA LA RESERVA DE LOS LOCALES
-
-  // const [isLogin, setIsLogin] = useState(false);
-  // const navigate = useNavigate()
-
-  // const handleClick = () => {
-  //   const token = localStorage.getItem("token");
-  //   console.log(token,  "este es el token del usuario");
-  //   if (token) {
-  //     setIsLogin(true);
-  //     navigate("/reservas");
-
-
-  //   } else {
-  //     setIsLogin(false);
-  //     navigate("/login&register");
-  //   }
-  // }
+  const handleReservation = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        localStorage.setItem("pendingLocalReservation", JSON.stringify(localInfo));
+        navigate("/login&register");
+      }else {
+        const response = await apiServiceInstance.getLocalById(localInfo._id);
+        console.log(response, "este es el Local");
+        setLocalData(response); 
+        // navigate(`/booking/${localInfo._id}`);
+      }
+    } catch (error) {
+      console.error('Error al crear reserva:', error);
+    }
+  };
 
   return (
     <>
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
           <img className="rectangle-2" alt={localInfo.id} src={localInfo.imgUrl} />
-          <div className="rectangle-3" />
-          <div className="text-wrapper-6"
-          // onClick={handleClick}
-          >RESERVAR
-            {/* <Link to="/reservas">
-            {isLogin ? "RESERVAR" : "RESERVAR"}
-            </Link> */}
-          </div>
+          <button className="rectangle-3">
+            <div className="text-wrapper-6"
+              onClick={handleReservation}
+            >{token ? (
+              <Link to={`/booking`}>RESERVAR</Link>
+              // ?? este link?
+            ) : (
+              <Link to="/login&register">RESERVAR</Link>
+            )}
+            </div></button>
           <p className="element-entrada-antes-de">
             <span className="text-wrapper-7">{localInfo.deals}€ - </span>
             <span className="text-wrapper-8">{localInfo.hour}</span>

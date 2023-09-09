@@ -23,9 +23,9 @@ const ListCards = () => {
   return (
     <div className="frame">
       <div className="local-card-list">
-        {locals.map((local) => (
-          <LocalCard key={local.id} localInfo={(local)} />
-        ))}
+      {locals.map((local) => (
+        <LocalCard key={local.id} localInfo={local} />
+      ))}
       </div>
     </div>
   );
