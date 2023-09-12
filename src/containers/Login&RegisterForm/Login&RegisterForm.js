@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import owl from '../../images/logoOwl.png'
 import './Login&RegisterForm.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from "../../components/AuthContext/AuthContext"
+import { useAuth } from "../../connect/AuthContext/AuthContext"
 import apiServiceInstance from '../../connect/apiService';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
@@ -28,7 +28,7 @@ const LoginAndRegister = () => {
         login(response.data.token);
         const pendingLocalReservation = JSON.parse(localStorage.getItem("pendingLocalReservation"));
         if (pendingLocalReservation) {
-          localStorage.removeItem("pendingLocalReservation"); // Elimina el local pendiente después de usarlo.
+          localStorage.removeItem("pendingLocalReservation");
           navigate(`/local/${pendingLocalReservation.id}`);
         } else {
           navigate("/");

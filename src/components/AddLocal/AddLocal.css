@@ -1,10 +1,8 @@
 .add-local-container {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   max-height: 100vh;
   overflow: hidden;
-
 }
 
 .owl-background {
@@ -96,14 +94,14 @@ input[type="text"],
 input[type="number"],
 textarea,
 input[type="file"] {
-  width: 100%;
+  width: 400px;
   padding: 10px;
   margin: 2px 0;
   border: none;
   border-radius: 8px;
   font-size: 20px;
   background-color: #46b1b81a;
-  color: #c0f4ff;
+  color: #037171;
 }
 
 button[type="submit"] {
@@ -190,7 +188,7 @@ form .input-field {
   text-decoration: underline;
 }
 
-.back-button {
+.back-button-add-local {
   position: absolute;
   top: 20px;
   left: 25px;
@@ -282,10 +280,36 @@ button[type="submit"]:hover {
 }
 
 .add-form {
-  width: 100%;
+  width: 900px;
 }
 
 .add-form label {
   display: flex;
   justify-content: start;
+}
+
+#categories {
+  width: 400px;
+  padding: 10px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: #46b1b81a;
+  color: #037171;
+}
+
+/* Estilo para el mensaje "Archivo seleccionado correctamente" */
+.selected-message {
+  font-size: 14px; /* Tamaño más pequeño */
+  color: green; /* Color del mensaje */
+  margin-top: 5px; /* Espacio superior */
+}
+
+.success-message-promotion{
+  color: #52E8E9;
+  font-size: 14px;
+  padding: 5px;
+  text-align: left;
+
 }

@@ -67,7 +67,7 @@ border: none;
   transform: translateX(-50%);
 }
 
-.desktop .text-wrapper-7 {
+.desktop .local-deals {
   font-weight: 600;
   font-size: 12px;
   top: 2px;
@@ -75,7 +75,7 @@ border: none;
   position: relative;
 }
 
-.desktop .text-wrapper-8 {
+.desktop .local-hour {
   font-family: "Poppins-LightItalic", Helvetica;
   font-style: italic;
   font-weight: 400;
@@ -171,7 +171,7 @@ border: none;
   font-weight: 500;
 }
 
-.desktop .text-wrapper-14 {
+.desktop .local-available-dates {
   color: #46b1b8;
   font-family: "Poppins-LightItalic", Helvetica;
   font-size: 14.5px;

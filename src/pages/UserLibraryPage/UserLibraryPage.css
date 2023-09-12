@@ -1,0 +1,23 @@
+.principal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.principal-container .booking-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-bookings {
+    margin-bottom: 20px;
+    color: #c0f4ff;
+    position: relative;
+    right: 420px;
+}
+
+.back-login {
+    color: white;
+}

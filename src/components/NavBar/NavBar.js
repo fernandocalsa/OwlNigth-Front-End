@@ -2,10 +2,10 @@ import logo from '../../images/logoOwl.png'
 import './NavBar.css'
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../AuthContext/AuthContext';
+import { useAuth } from '../../connect/AuthContext/AuthContext';
 
 function NavBar() {
-    const { token } = useAuth();
+    const { token, user, userName } = useAuth();
 
     return (
         <>
@@ -25,7 +25,11 @@ function NavBar() {
                                 </Link>
                             </li>
                             <li className='mi-perfil'>
-                                <Link to="/user-profile">Mi Perfil</Link>
+                                {token && userName.profilePath ? (
+                                    <Link to={userName.profilePath}>{userName}</Link>
+                                ) : (
+                                    <Link to="/user-profile">Mi Perfil</Link>
+                                )}
                             </li>
                         </>
                     ) : (

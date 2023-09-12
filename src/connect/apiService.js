@@ -83,7 +83,7 @@ const apiServiceInstance = {
         dni,
         age,
       });
-      console.log("esto es el response.data", response.data);
+      console.log("esto es el response.data", response.data); //aquí hay posibilidad del userId
       return response.data;
     } catch (error) {
       throw error;
@@ -93,7 +93,8 @@ const apiServiceInstance = {
   //revisar función - para traer los usuarios al proManager
   getUsersNight: async () => {
     try {
-      const response = await instance.get('/');
+      const response = await instance.get('/usersnight');
+      console.log(response.data, "AQUITIENE QUE IR EL ID");
       return response.data;
     } catch (error) {
       console.error('Error al obtener usuarios nocturnos:', error);
@@ -111,11 +112,10 @@ const apiServiceInstance = {
     }
   },
 
-
-  //revisar - no funciona!
   getUserData: async (data) => {
     try {
       const token = localStorage.getItem('token');
+
       if (!token) {
         throw new Error('Usuario no autenticado');
       }
@@ -125,7 +125,7 @@ const apiServiceInstance = {
         },
       };
       const response = await instance.get('/usersnight/me', config);
-      console.log(response.data, "este es el response.data de la petición");
+      console.log(response.data, "este es el response.data de la petición de getUserData");
       return response.data;
     } catch (error) {
       console.error('Error al obtener datos del usuario:', error);
@@ -135,13 +135,9 @@ const apiServiceInstance = {
 
   getLocalById: async (localById) => {
     try {
-      console.log(localById, "este es el parámetro que le doy a la función, tiene el id del local")
       const response = await instance.get(`/locals/${localById}`);
-      console.log(response, "este es el response del ApiService")
       if (response.status === 200) {
-        console.log(response.data, "esto es la respuesda del servidor a getLocalById")
         return response.data;
-
       } else {
         console.log("no se han encontrado los datos del local")
       }
@@ -150,6 +146,47 @@ const apiServiceInstance = {
     }
   },
 
+  getUserBookings: async (userId) => {
+    try {
+      const response = await instance.get(`/bookings/usersnight/${userId}`);
+      return response.data.bookings; // Devuelve las reservas del usuario
+    } catch (error) {
+      console.error('Error al obtener las reservas del usuario:', error);
+      throw error; // Puedes manejar el error de la manera que desees
+    }
+  },
+
+
+// getAvailableDates: async () => { // si no sirve porque me funciona la de getLocalById esta se borra
+//   try {
+//     const response = await instance.get('/dates'); // Ruta que corresponde a obtener las fechas disponibles desde el servidor
+//     const availableDates = response.data.availableDates; // Ajusta esto según la estructura de tu respuesta del servidor
+//     return availableDates;
+//   } catch (error) {
+//     console.error('Error al obtener las fechas disponibles:', error);
+//     throw error;
+//   }
+// },
+
+  createBooking: async (userId, localId, dates, token) => {
+    try {
+      const response = await instance.post('/bookings', {
+        userId: userId,
+        localId: localId,
+        dates: dates,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data, "este es el response.data de createBooking");
+      return response.data; // Esto devolverá la respuesta del servidor, que incluye el mensaje y los datos de la reserva si fue exitosa.
+    } catch (error) {
+      console.error('Error al realizar la reserva:', error);
+      throw error;
+    }
+  },
 
 
   //Función para cambiar la imagen del Avatar - no funciona-----------------------

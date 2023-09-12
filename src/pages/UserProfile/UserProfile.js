@@ -3,10 +3,8 @@ import './UserProfile.css';
 // import { useNavigate } from 'react-router-dom';
 // import EditProfile from '../../containers/EditProfile/EditProfile';
 import apiServiceInstance from '../../connect/apiService';
-import { useAuth } from '../../components/AuthContext/AuthContext';
+import { useAuth } from '../../connect/AuthContext/AuthContext';
 import avatar from '../../images/iconoAvatar.png'
-
-
 //la imagen se quita cuando recargo, eso es que no se está guardando en el back
 //colocar css
 
@@ -62,7 +60,6 @@ const Profile = () => {
     // };
 
 
-
     //FUTURA FUNCIÓN - EDITAR LOS DATOS DEL USUARIO, CON VALIDACIÓN
     // const handleEditClick = () => {
     //     setEdit(true);
@@ -81,42 +78,49 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            <h1>Bienvenido a tu perfil, {dataUser.usersName}</h1>
+            <h1 className='profile-name'>Bienvenido a tu perfil, {dataUser.usersName}</h1>
             <div className="user-info">
-                 <div className="background-image">
-                <img
-                    className="user-avatar"
-                    src={avatarImg || avatar} // Usa una imagen predeterminada si avatarImg es null
-                    alt="Avatar del usuario"
-                />
+                <div className="user-avatar">
+                    <img
+                        className='user-image-profile'
+                        src={avatarImg || avatar}
+                        alt="Avatar del usuario"
+                    />
+                    {/* Botón para guardar imagen de perfil */}
+                    {editAvatar && (
+                        <button className="save-avatar-button">
+                            Guardar imagen de perfil
+                        </button>
+                    )}
+                </div>
+                <div className="user-details">
+                    <div className="name-wrapper-1">Nombre de Usuario</div>
+                    <div className='rectangle-inputs-1'><p className='edit-buttor-for-user'>{dataUser.usersName}</p></div>
+                    <div className="email-wrapper-3">Email</div>
+                    <div className='rectangle-inputs-1'><p className='edit-buttor-for-user'>{dataUser.email}</p></div>
+                    <div className="dni-wrapper-4">DNI</div>
+                    <div className='rectangle-inputs-1'><p className='edit-buttor-for-user'>{dataUser.dni}</p></div>
+                    <div className="age-wrapper-5">Edad</div>
+                    <div className="age-input-container">
+                        <div className='rectangle-inputs-2'><p className='edit-buttor-for-user'>{dataUser.age}</p></div>
+                        <button className="edit-button edit-age-button">
+                            <label
+                                htmlFor="avatar-input"
+                                className="edit-avatar-button"
+                                onClick={() => setEditAvatar(true)}
+                            >Editar imagen de perfil</label>
+                        </button>
+                    </div>
+                </div>
             </div>
+
+            <button className="logout-button" onClick={logout}>Cerrar Sesión</button>
             <input
                 type="file"
                 accept="image/*"
-                // onChange={handleAvatarChange}
                 style={{ display: 'none' }}
                 id="avatar-input"
             />
-                <label
-                    htmlFor="avatar-input"
-                    className="edit-avatar-button"
-                    onClick={() => setEditAvatar(true)}
-                >
-                    Editar imagen de perfil
-                </label>
-                {editAvatar && (
-                <button className="save-avatar-button"
-                // onClick={handleEditAvatar}
-                >
-                    Guardar imagen de perfil
-                </button>
-            )}
-                <div className="user-details">
-                    <p>Correo Electrónico: {dataUser.email}</p>
-                    <p>Edad: {dataUser.age}</p>
-                </div>
-            </div>
-            <button className="logout-button" onClick={logout}>Cerrar Sesión</button>
         </div>
     );
 };

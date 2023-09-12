@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import apiServiceInstance from '../../connect/apiService';
-import { useAuth } from "../AuthContext/AuthContext"
+import { useAuth } from "../../connect/AuthContext/AuthContext"
 
 const LoginForm = ({ onLogin }) => {
   const [usersName, setUsername] = useState('');
@@ -19,7 +19,6 @@ const LoginForm = ({ onLogin }) => {
         console.error('Error de autenticación:', errorMessage);
         onLogin(errorMessage);
       }
-      
     } catch (error) {
       console.error('Error de autenticación:', error);
     }

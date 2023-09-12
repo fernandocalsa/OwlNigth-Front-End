@@ -1,55 +1,136 @@
-/* UserProfile.css */
-
-/* Estilos para el contenedor principal */
 .profile-container {
-  width: 50%;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 0 auto;
-  position: absolute;
-  left: 5%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 2%;
+  margin: 0 auto;
+  background-color: #163439;
+  color: #c0f4ff;
+  max-width: max-content;
   overflow: hidden;
-  background-color: #163439; /* Cambia el color de fondo */
-  color: #c0f4ff; /* Cambia el color del texto */
+  width: 100%;
 }
 
-/* Estilos para el título de bienvenida */
-.profile-container h1 {
+.profile-name {
   font-family: "Poppins-Medium", Helvetica;
   font-size: 36.7px;
   font-weight: 500;
   margin-bottom: 20px;
+  color: #c0f4ff;
 }
 
-/* Estilos para la información del usuario */
 .user-info {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .user-avatar {
-  width: 100px; /* Ajusta el tamaño de la imagen del usuario */
-  height: 100px; /* Ajusta el tamaño de la imagen del usuario */
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 20px;
+  flex: 0 0 275px;
+}
+
+.user-image-profile {
+  height: 275px;
+  width: 275px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  position: relative;
+  top: 19px;
+  left: 0;
   margin-right: 20px;
 }
 
 .user-details {
   font-size: 20px;
+  color: #c0f4ff;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 541px;
+  margin-left: 20px;
 }
 
-/* Estilos para el botón de cerrar sesión */
-.logout-button {
-  background-color: #52e8e9;
+.rectangle-inputs-1 {
+  border: 1px solid #46b1b8;
+  border-radius: 10px;
+  height: 41px;
+  width: 100%;
+  margin: 10px 0;
+  color: #ffffff;
+  font-family: "Poppins-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.rectangle-inputs-2 {
+  border: 1px solid #46b1b8;
+  border-radius: 10px;
+  height: 41px;
+  width: 50%;
+  margin: 10px 0;
+  color: #ffffff;
+  font-family: "Poppins-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.edit-avatar-button {
+  margin-top: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.save-avatar-button {
+  margin-top: 50px;
+  background-color: #52e9e9a9;
   border: none;
   border-radius: 8px;
   height: 36px;
-  width: 50%;
+  width: 100%;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-avatar-button:hover {
+  background-color: #3cc6c7;
+}
+
+.logout-button {
+  background-color: #52e9e9a9;
+  border: none;
+  border-radius: 8px;
+  height: 36px;
+  width: 541px;
+  margin: 20px 0;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  left: 165px;
+
+}
+
+.edit-button {
+  background-color: #52e9e9a9;
+  border: none;
+  border-radius: 8px;
+  height: 36px;
   margin: 20px 0;
   color: #ffffff;
   font-size: 18px;
@@ -61,4 +142,28 @@
   background-color: #3cc6c7;
 }
 
-/* Nota: Se han eliminado las reglas de estilo no utilizadas o comentadas para simplificar el CSS. */
+.name-wrapper-1,
+.dni-wrapper-4,
+.email-wrapper-3,
+.age-wrapper-5 {
+  color: #46b1b8;
+  font-weight: 600;
+}
+
+.edit-buttor-for-user {
+  position: relative;
+  top: 7px !important;
+  left: 15px !important;
+  width: 345px;
+}
+
+.age-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-age-button {
+  margin-left: 10px;
+  width: 100%;
+}

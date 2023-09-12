@@ -1,69 +1,125 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../components/AuthContext/AuthContext';
-import { Link } from"react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useNavigate } from "react-router-dom"
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './BookingPage.css';
+import apiServiceInstance from '../../connect/apiService';
+import { useAuth } from '../../connect/AuthContext/AuthContext';
+import { DateProvider, useDateContext } from "../../components/DateContext/DateContext";
+
 
 const BookingPage = ({ localInfo }) => {
-  
-  const { localData } = useAuth();
-  const [selectedDate, setSelectedDate] = useState(null); // Estado para almacenar la fecha seleccionada
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const { localId } = useParams();
+  const { token, user, datesFromAddLocal } = useAuth();
+  const [selectedDate, setSelectedDate] = useState('');
+  const { availableDates, setDates } = useDateContext();
+  const [localData, setLocalData] = useState(null);
+  const [isBookingProcessing, setIsBookingProcessing] = useState(false);
+  const navigate = useNavigate();
+
+  console.log(setDates, "LAPUTAAAA FECHAAAAA");
+
+  const getLocalData = async () => {
+    const data = await apiServiceInstance.getLocalById(localId)
+    setLocalData(data);
+  };
+
+  useEffect(() => {
+    getLocalData()
+  }, []);
+
+  const handleSaveReservation = async () => {
+    try {
+      setIsBookingProcessing(true);
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('Token de autenticación no encontrado');
+        return;
+      }
+      const userData = await apiServiceInstance.getUserData();
+      if (!userData) {
+        console.error('No se pudo obtener la información del usuario');
+        return;
+      };
+      const userId = userData._id;
+      console.log(userId, "ESTE ES EL ID JODER!!");
+      const localDate = availableDates;
+      console.log(localDate, "ESTE ES EL PUTOOOO ARRRAAAAAAAAAAAAYYYY!!");
+      const dates = localDate ? localDate : [];
+      const bookingData = {
+        localId: localId,
+        userId: userId,
+        dates: dates,
+      };
+      const response = await apiServiceInstance.createBooking(userId, localId, dates, token); //me hace falta el token aqui?
+      console.log('Respuesta de createBooking:', response);
+      setTimeout(() => {
+        setIsBookingProcessing(false);
+        navigate('/library');
+      }, 2000);
+    } catch (error) {
+      console.error('Error al guardar la reserva:', error);
+      setIsBookingProcessing(false);
+
+    }
+  };
+
+  const handleDateChange = async (date) => {
+    const dates = await apiServiceInstance.getLocalById(localData.availableDates)
+    setSelectedDate(dates);
+
+    console.log(localData.availableDates, "estas son las fechas del servidor");
   };
 
   return (
     <>
       <div className="booking-container">
-      <h1 className="booking-title">Detalles del Local</h1>
-      {localData ? (
-        <div className="booking-details">
-          <img
-            src={localData.imgUrl}
-            alt={`Foto de ${localData.discoName}`}
-            className="booking-image"
-          />
-          <div className="booking-info"> 
-            <p className="booking-info-item">
-              <strong>Nombre del local:</strong> {localData.discoName}
-            </p>
-            <p className="booking-info-item">
-              <strong>Ubicación:</strong> {localData.ubication}
-            </p>
-            {/* <p className="booking-info-item">
-              <strong>Fecha:</strong> {localData.date}
-            </p> */}
-            {/* ROMPER EN SERVIDOR */}
-            <div className="booking-info-item">
-              <strong>Selecciona una fecha:</strong>
-              <DatePicker
-              className='data-picker'
-                selected={selectedDate}
-                onChange={handleDateChange}
-                dateFormat="dd/MM/yyyy" // Formato de fecha
-                minDate={new Date()}
-                isClearable
-              />
+        <h1 className="booking-title">Detalles del Local</h1>
+        {localData ? (
+          <div className="booking-details">
+            <img
+              src={localData.imgUrl}
+              alt={`Foto de ${localData.discoName}`}
+              className="booking-image"
+            />
+            <div className="booking-info">
+              <p className="booking-info-item">
+                <strong>Nombre del local:</strong> {localData.discoName}
+              </p>
+              <p className="booking-info-item">
+                <strong>Ubicación:</strong> {localData.ubication}
+              </p>
+              <div className="booking-info-item">
+                <strong>Fecha:</strong>
+                <div className="booking-info-item">
+                  <option value="">Selecciona una fecha</option>
+                  {availableDates.map((date, index) => (
+                    <option key={index} value={date}>
+                      {date}
+                    </option>
+                  ))}
+                </div>
+              </div>
+              <p className="booking-info-item">
+                <strong>Promoción:</strong> {localData.promotion}
+              </p>
+              <p className="booking-info-item">
+                <strong>Deals:</strong> {localData.deals}
+              </p>
+              <p className="booking-info-item">
+                <strong>Hora:</strong> {localData.hour}
+              </p>
+              <button onClick={handleSaveReservation}>Guardar Reserva</button>
+              {isBookingProcessing && <p>Guardando reserva...</p>}
             </div>
-            <p className="booking-info-item">
-              <strong>Promoción:</strong> {localData.promotion}
-            </p>
-            <p className="booking-info-item">
-              <strong>Deals:</strong> {localData.deals}
-            </p>
-            <p className="booking-info-item">
-              <strong>Hora:</strong> {localData.hour}
-            </p>
           </div>
-        </div>
-      ) : (
-        <Link to="/locals" className="back-link">
-          <button className="back-button">Volver</button>
-        </Link>
-      )}
-    </div>
+        ) : (
+          <Link to="/locals" className="back-link">
+            <button className="back-button">Volver</button>
+          </Link>
+        )}
+      </div>
     </>
   );
 };

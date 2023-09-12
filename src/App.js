@@ -7,7 +7,8 @@ import FormUpload from './containers/FormUpload/FormUpload';
 import LoginPage from './pages/Login&RegisterPage/Login&RegisterPage';
 import Profile from './pages/UserProfile/UserProfile';
 import UserLibraryPage from './pages/UserLibraryPage/UserLibraryPage';
-import { AuthProvider } from './components/AuthContext/AuthContext';
+import { AuthProvider } from './connect/AuthContext/AuthContext';
+import { DateProvider } from './components/DateContext/DateContext'; // Importa el proveedor de contexto
 import BookingPage from './pages/BookingsPage/BookingsPage';
 
 
@@ -16,6 +17,7 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
+          <DateProvider>
           <Routes>
             <Route path="/login&register" element={<LoginPage />} />
             <Route path="/form" element={<FormUpload />} />
@@ -26,11 +28,11 @@ function App() {
               <Route path="/user-profile" element={<Profile />} />
               <Route path="/library" element={<UserLibraryPage />} />
               <Route path="/booking/:localId" element={<BookingPage />} />
-              <Route path="/booking" element={<BookingPage />} />
               TODO
               {/* <Route path="/" element={<ProManagerHome />} /> */}
             </Route>
           </Routes>
+          </DateProvider>
         </AuthProvider>
       </BrowserRouter>
     </>
