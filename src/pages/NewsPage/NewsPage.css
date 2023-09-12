@@ -1,0 +1,109 @@
+.news-page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    bottom: 20px;
+}
+
+.discount-container {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 63%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #54f1f1;
+}
+
+.discount-text {
+    font-size: 36px;
+    font-weight: bold;
+    color: #11262b;
+}
+
+.offer-message {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #11262b;
+}
+
+.offer-message-2 {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #11262b;
+}
+
+.list-news-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 1200px;
+    width: 60%;
+}
+
+.custom-local-card {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background: #11262b;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    min-height: 350px;
+    min-width: 300px;
+}
+
+.custom-local-card:hover {
+    transform: scale(1.35);
+    z-index: 1;
+}
+
+.custom-local-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.custom-local-details {
+    margin-top: 10px;
+    color: #333;
+}
+
+.custom-local-category {
+    font-weight: bold;
+    font-weight: 800;
+    color: #dd5eb5;
+}
+
+.custom-local-deals {
+    font-size: 16px;
+    color: #ffff;
+}
+
+.custom-local-hour {
+    font-size: 16px;
+    color: #ffff;
+}
+
+.additional-text {
+    text-align: center;
+    font-size: 29px;
+    margin-top: 30px;
+    color: #54f1f1;
+}
+
+@media (max-width: 768px) {
+    .list-news-container {
+        flex-direction: column;
+    }
+
+    .custom-local-card {
+        flex-basis: calc(50% - 10px);
+    }
+}

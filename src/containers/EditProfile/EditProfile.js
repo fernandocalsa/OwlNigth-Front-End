@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
 const EditProfile = ({ userData, onSave }) => {
-  // Extraer los datos del usuario de las props
   const { name: initialName, email: initialEmail, age: initialAge, profileImage: initialProfileImage } = userData;
 
-  // Establecer los estados iniciales con los datos del usuario
   const [name, setName] = useState(initialName);
   const [email, setEmail] = useState(initialEmail);
   const [age, setAge] = useState(initialAge);
@@ -12,15 +10,13 @@ const EditProfile = ({ userData, onSave }) => {
   const [newProfileImage, setNewProfileImage] = useState(null);
 
   const handleImageChange = (e) => {
-    // Manejar la carga de la nueva imagen aquí
     const file = e.target.files[0];
 
     if (file) {
-      // Puedes mostrar una vista previa de la imagen antes de subirla
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImage(e.target.result); // Mostrar la vista previa de la imagen
-        setNewProfileImage(file); // Almacenar la nueva imagen para enviarla al servidor
+        setProfileImage(e.target.result);
+        setNewProfileImage(file); 
       };
       reader.readAsDataURL(file);
     }
@@ -28,12 +24,11 @@ const EditProfile = ({ userData, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Construir los datos actualizados del usuario
     const updatedUserData = {
       name,
       email,
       age,
-      profileImage: newProfileImage || initialProfileImage, // Usar la nueva imagen si se ha cargado, de lo contrario, usar la imagen existente
+      profileImage: newProfileImage || initialProfileImage,
     };
     onSave(updatedUserData);
   };

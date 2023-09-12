@@ -26,7 +26,7 @@ const Locals = () => {
               </p>
               <p className="p">Make your firs reservation and get</p>
               <div className="button-container">
-              {token && isProManager && (
+                {token && isProManager && (
                   <div>
                     <Link to="/form">
                       <button className="add-local">Añadir Local</button>

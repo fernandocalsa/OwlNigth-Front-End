@@ -8,7 +8,7 @@ import { DateProvider, useDateContext } from "../DateContext/DateContext";
 
 const LocalCard = ({ localInfo }) => {
   const { token, setLocalData } = useAuth();
-  const{ availableDates }= useDateContext();
+  const { availableDates } = useDateContext();
   const navigate = useNavigate();
 
   const handleReservation = async () => {
@@ -73,9 +73,7 @@ const LocalCard = ({ localInfo }) => {
             <span className="text-wrapper-13">{localInfo.promotion}</span>
           </p>
           <p className="local-available-dates">
-            {/* Fechas disponibles: {changeFormatDate()} */}
-                        Fechas disponibles: {availableDates}
-
+            Fechas disponibles: {availableDates}
           </p>
 
         </div>

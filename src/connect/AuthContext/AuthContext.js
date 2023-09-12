@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   const getDatesFromAddLocal = async () => {
     try {
       const response = await apiServiceInstance.addLocal();
-      console.log(response.data, "AQUÍ TIENE QUE ESTAR LA PUTA FECHAAA!!!!");
+      console.log(response.data, "AQUÍ TIENE QUE ESTAR LA FECHAAA!!!!");
       if (response) {
         const dates = await response.json();
         setDatesFromAddLocal(dates);
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
   const getUserBookings = async (userId) => {
     try {
       const response = await apiServiceInstance.getUserBookings(userId);
-      return response; // Devuelve la respuesta del servidor que contiene las reservas
+      return response;
     } catch (error) {
       console.error('Error al obtener las reservas del usuario:', error);
       throw error;

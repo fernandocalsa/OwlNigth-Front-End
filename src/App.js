@@ -10,6 +10,8 @@ import UserLibraryPage from './pages/UserLibraryPage/UserLibraryPage';
 import { AuthProvider } from './connect/AuthContext/AuthContext';
 import { DateProvider } from './components/DateContext/DateContext'; // Importa el proveedor de contexto
 import BookingPage from './pages/BookingsPage/BookingsPage';
+import NewsPage from './pages/NewsPage/NewsPage';
+import { LastLocalProvider } from './connect/Context';
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
+        <LastLocalProvider>
           <DateProvider>
           <Routes>
             <Route path="/login&register" element={<LoginPage />} />
@@ -24,6 +27,7 @@ function App() {
             <Route element={<HeaderLayout />}>
               {/* A PARTIR DE AQUÍ LAS PÁGINAS SE MUESTRAN CON EL HEADERLAYOUT Y EL MENU PRINCIPAL DE LA PÁGINA */}
               <Route path="/locals" element={<Locals />} />
+              <Route path="/newspage" element={<NewsPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/user-profile" element={<Profile />} />
               <Route path="/library" element={<UserLibraryPage />} />
@@ -33,6 +37,7 @@ function App() {
             </Route>
           </Routes>
           </DateProvider>
+          </LastLocalProvider>
         </AuthProvider>
       </BrowserRouter>
     </>

@@ -59,7 +59,7 @@ const Frame = () => {
                     <div className="group-4">
                         <div className="text-wrapper-5">¡NOVEDAD!</div>
                         <div className="div-2">
-                            <Link to="/beerParty" className="hover-effect">
+                            <Link to="/newspage" className="hover-effect">
                                 <img className="img" alt="Rectangle" src={beer} />
                             </Link>
                             <p className="p">Fiesta de la Cerveza <br />

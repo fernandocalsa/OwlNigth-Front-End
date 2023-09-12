@@ -25,6 +25,7 @@ const AddLocal = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [currentDate, setCurrentDate] = useState(null);
 
+
   const handleDateChange = (date) => {
     setCurrentDate(date);
   };
@@ -32,21 +33,16 @@ const AddLocal = () => {
   const handleAddDate = () => {
     if (currentDate && !availableDates.includes(currentDate)) {
       const formattedDate = format(currentDate, 'yyyy-MM-dd');
-      // Actualiza el array de fechas en el contexto DateContext
       setAvailableDates([...availableDates, formattedDate]);
-      setCurrentDate(null); // Limpia la fecha actual después de agregarla
+      setCurrentDate(null);
       console.log(availableDates, "QUE COÑO ES ESTO???")
     }
   };
-
-
 
   const handleRemoveDate = (dateToRemove) => {
     const updatedDates = availableDates.filter((date) => date !== dateToRemove);
     setAvailableDates(updatedDates);
   };
-
-
 
   console.log(availableDates, "AQUI ESTA MI ARRAY!!!!");
 
@@ -90,7 +86,6 @@ const AddLocal = () => {
     { name: "Celebraciones y Eventos" },
     { name: "Novedades" },
   ];
-
 
   return (
     <div className="add-local-container">
