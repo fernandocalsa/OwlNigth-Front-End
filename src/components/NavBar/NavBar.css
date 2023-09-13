@@ -73,6 +73,21 @@ a {
     color: #c0f3ff;
 }
 
+.my-profile-menu{
+    color: #c0f3ff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: none;
+    top: 0;
+    padding-right: 30px;
+}
+.my-profile-menu:hover{
+    text-decoration: underline;
+}
+
 .login {
     color: #c0f3ff;
     font-family: "Poppins-SemiBold", Helvetica;
@@ -101,7 +116,25 @@ a {
     }
 }
 
-.mi-perfil {
+.menu .add-local-promanager {
+    color: #c0f3ff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: none;
+    top: 0;
+    padding-right: 15px;
+    transition: transform 0.4s;
+}
+
+.menu .add-local-promanager:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+
+.logout-promanager {
     color: #c0f3ff;
     font-family: "Poppins-SemiBold", Helvetica;
     font-size: 20px;
@@ -113,6 +146,6 @@ a {
     padding-right: 30px;
 }
 
-.mi-perfil:hover {
+.menu .logout-promanager:hover {
     text-decoration: underline;
 }

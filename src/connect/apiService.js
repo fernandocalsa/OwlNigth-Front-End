@@ -112,6 +112,8 @@ const apiServiceInstance = {
     }
   },
 
+  //deleteLocal
+
   getLatestLocals: async () => {
     try {
       const response = await instance.get('/locals/news');
@@ -193,6 +195,20 @@ const apiServiceInstance = {
       });
       console.log(response.data, "este es el response.data de createBooking");
       return response.data;
+    } catch (error) {
+      console.error('Error al realizar la reserva:', error);
+      throw error;
+    }
+  },
+
+  updateLocals: async (localById, updatedFields) => {
+    try {
+      const editFields = await instance.patch(`/locals/${localById}`, updatedFields)
+      // console.log(updatedFields, "estos son los updatedFields");
+      // console.log(response, "este es el response de update local");
+      console.log(editFields, "este es el response.data de updatelocal");
+
+      return editFields;
     } catch (error) {
       console.error('Error al realizar la reserva:', error);
       throw error;

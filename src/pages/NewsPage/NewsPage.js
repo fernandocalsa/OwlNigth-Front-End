@@ -7,7 +7,6 @@ import { useLastLocalsContext } from '../../connect/Context';
 const NewsPage = () => {
 
   const { lastLocals } = useLastLocalsContext();
-  // const localsWithImages = lastLocals.filter(local => local.imgUrl);
 
   return (
     <div className="news-page-container">

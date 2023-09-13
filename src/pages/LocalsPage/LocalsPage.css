@@ -219,3 +219,7 @@
   text-shadow: 2px 2.97px 7px #fb33a8;/* Cambia el color del texto a rosa al pasar el ratón */
   /* Agregar cualquier otra propiedad deseada para el hover */
 }
+
+.no-banner {
+  margin-top: -200px; /* Ajusta este valor según tu diseño */
+}

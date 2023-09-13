@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }) => {
       }
       const data = await response.json();
       setUser(data);
-      console.log(data, "este es el usersName de el Contextoooo");
     } catch (error) {
       console.error('Error al obtener el nombre del usuario:', error);
     }
@@ -45,8 +44,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', newToken);
     setToken(newToken);
     setUser(userData);
-    console.log(userData);
-
   };
 
   const logout = () => {

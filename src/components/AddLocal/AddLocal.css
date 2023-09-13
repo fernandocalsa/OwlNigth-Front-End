@@ -301,15 +301,130 @@ button[type="submit"]:hover {
 
 /* Estilo para el mensaje "Archivo seleccionado correctamente" */
 .selected-message {
-  font-size: 14px; /* Tamaño más pequeño */
-  color: green; /* Color del mensaje */
-  margin-top: 5px; /* Espacio superior */
+  font-size: 14px;
+  /* Tamaño más pequeño */
+  color: green;
+  /* Color del mensaje */
+  margin-top: 5px;
+  /* Espacio superior */
 }
 
-.success-message-promotion{
+.success-message-promotion {
   color: #52E8E9;
   font-size: 14px;
   padding: 5px;
   text-align: left;
 
+}
+
+.add-new-date-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-new-date-button button {
+  border-radius: 5px;
+  margin-top: 8px;
+  width: 50%;
+  position: relative;
+  left: 50%;
+  height: 25px;
+  background-color: #037171ea;
+  border: none;
+  font-size: 14px;
+}
+.add-new-date-button button:hover{
+  background-color: #3cc7c78f;
+}
+
+/* Estilos CSS para el fragmento de código anterior */
+.date-picker-container {
+  margin-top: 20px; /* Espacio superior para separarlo de otros elementos */
+}
+
+.date-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el DatePicker y el botón */
+}
+
+.add-date-button {
+  background-color: #52E8E9;
+  border: none;
+  border-radius: 8px;
+  height: 36px;
+  width: 150px; /* Ajusta el ancho según tus preferencias */
+  color: #fff;
+  font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-date-button:hover {
+  background-color: #3CC6C7;
+}
+
+.list-of-dates {
+  list-style-type: none;
+  margin: 10px 0; /* Espacio superior e inferior para la lista */
+  padding: 0;
+}
+
+.date-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px; /* Espacio entre elementos de la lista */
+}
+
+.remove-date-button {
+  background-color: #f44336; /* Color de botón de eliminación */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  height: 28px;
+  width: 80px; /* Ajusta el ancho según tus preferencias */
+  font-size: 14px; /* Ajusta el tamaño de fuente según tus preferencias */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-date-button:hover {
+  background-color: #d32f2f; /* Color de botón de eliminación al pasar el mouse */
+}
+
+/* Estilo para el contenedor del DatePicker */
+.date-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo para el DatePicker */
+.date-picker {
+  display: inline-block;
+}
+
+/* Ajusta el posicionamiento del calendario para que se abra hacia arriba */
+.react-datepicker-popper {
+  transform: translateY(-100%);
+  margin-top: 10px;
+}
+
+/* Estilo para el botón "Agregar Fecha" */
+.add-date-button {
+  display: block;
+  width: 100%;
+  background-color: #52E8E9;
+  border: none;
+  border-radius: 8px;
+  height: 36px;
+  margin-top: 10px; /* Espacio entre el DatePicker y el botón */
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-date-button:hover {
+  background-color: #3CC6C7;
 }
