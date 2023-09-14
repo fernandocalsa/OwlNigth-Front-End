@@ -110,7 +110,7 @@ const BookingPage = ({ localInfo }) => {
               <p className="booking-info-item">
                 <strong>Hora:</strong> {localData.hour}
               </p>
-              <button onClick={handleSaveReservation}>Guardar Reserva</button>
+              <button className='save-booking-button' onClick={handleSaveReservation}>Guardar Reserva</button>
               {isBookingProcessing && <p>Guardando reserva...</p>}
             </div>
           </div>

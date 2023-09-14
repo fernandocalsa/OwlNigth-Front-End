@@ -45,8 +45,8 @@ const UserLibraryPage = () => {
           ))
         ) : (
           <div className='back-login'>
-            <p>No hay reservas disponibles. Necesitas iniciar sesión</p>
-            <Link to="/login&register"><button>Volver</button></Link>
+            <p>Aún no tienes reservas.</p>
+            <Link to="/locals"><button className='button-back-locals'>Volver</button></Link>
           </div>
         )}
 

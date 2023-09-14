@@ -1,12 +1,15 @@
 // NewsPage.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './NewsPage.css';
 import { useLastLocalsContext } from '../../connect/Context';
+import { useAuth } from "../../connect/AuthContext/AuthContext";
 
 const NewsPage = () => {
 
   const { lastLocals } = useLastLocalsContext();
+  const { token } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="news-page-container">
@@ -22,8 +25,18 @@ const NewsPage = () => {
         </p>
       </div>
       <div className="list-news-container">
-        {lastLocals.map((local) => (
-          <Link to={`/booking/${local._id}`} key={local._id} className="custom-local-link">
+      {lastLocals.map((local) => (
+          <Link
+            key={local._id}
+            to={token ? `/booking/${local._id}` : '/login&register'}
+            className="custom-local-link"
+            onClick={(e) => {
+              if (!token) {
+                e.preventDefault(); // Evita la navegación si no está autenticado
+                navigate('/login&register'); // Redirige a la página de inicio de sesión
+              }
+            }}
+          >
             <div className="custom-local-card" key={local._id}>
               <img
                 className="custom-local-image"

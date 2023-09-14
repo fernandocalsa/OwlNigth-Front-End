@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import apiServiceInstance from '../../connect/apiService';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../connect/AuthContext/AuthContext'
 import DatePicker from 'react-datepicker';
 import owl from "../../images/logoOwl.png"
 import { format } from 'date-fns';
@@ -24,22 +25,38 @@ const AddLocal = () => {
   const [redirect, setRedirect] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [currentDate, setCurrentDate] = useState(null);
+  const [error, setError] = useState(false);
+  const { isProManager } = useAuth();
   const [requiredFieldsEmpty, setRequiredFieldsEmpty] = useState(false);
 
+  const resetForm = () => {
+    setDiscoName('');
+    setUbication('');
+    setPromotion('');
+    setDeals('');
+    setHour('');
+    setimgUrl(null);
+    setAvailableDates([]);
+    setSelectedDate(initialDate);
+    setMessage('');
+    setSelectMessage('');
+    setImgSelected(false);
+    setRedirect(false);
+    setSelectedCategories([]);
+    setCurrentDate(null);
+  };
 
 
   const handleDateChange = (date) => {
     setCurrentDate(date);
   };
 
-  const handleAddDate = () => {
+  const handleAddDate = (event) => {
+    event.preventDefault();
     if (currentDate && !availableDates.includes(currentDate)) {
       const formattedDate = format(currentDate, 'yyyy-MM-dd');
       setAvailableDates([...availableDates, formattedDate]);
       setCurrentDate(null);
-      console.log(availableDates, "QUE COÑO ES ESTO???")
-      console.log(setAvailableDates, "QUE COÑO ES ESTO???")
-
     }
   };
 
@@ -47,8 +64,6 @@ const AddLocal = () => {
     const updatedDates = availableDates.filter((date) => date !== dateToRemove);
     setAvailableDates(updatedDates);
   };
-
-  console.log(message, "AQUI ESTA MI mensajee!!!!");
 
   const handleImageChange = (event) => {
     setimgUrl(event.target.files[0]);
@@ -59,10 +74,17 @@ const AddLocal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // if (!discoName || !ubication || !promotion || !deals || !hour || !imgUrl || !currentDate || selectedCategories.length === 0 || availableDates.length === 0) {
-    //   setRequiredFieldsEmpty(true);
-    //   return; // Detiene la ejecución si hay campos vacíos
-    // }
+    if (!discoName || selectedCategories.length === 0) {
+      setRequiredFieldsEmpty(true);
+      setError(true);
+      return;
+    }
+    if (!imgUrl) {
+      setRequiredFieldsEmpty(true);
+      setError(true);
+      setMessage('La imagen es un campo obligatorio.');
+      return;
+    }
 
     const formattedDates = selectedDate.toISOString();
     console.log(formattedDates, "formattedDates");
@@ -75,13 +97,15 @@ const AddLocal = () => {
     formData.append('hour', hour);
     formData.append('promotion', promotion);
     // formData.append('date', date);
-    formData.append('availableDates', JSON.stringify(availableDates)); // Convierte el array en una cadena JSON
+    formData.append('availableDates', JSON.stringify(availableDates));
     formData.append('categories', JSON.stringify(selectedCategories));
-
+    setRequiredFieldsEmpty(false);
     try {
       const response = await apiServiceInstance.addLocal(formData);
+      resetForm();
       setMessage('*Local Añadido Correctamente*');
       setRedirect(true);
+
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error:', error);
@@ -97,10 +121,20 @@ const AddLocal = () => {
     { name: "Novedades" },
   ];
 
+
+  const handleCategoryChange = (event) => {
+    const categoryName = event.target.value;
+    if (selectedCategories.includes(categoryName)) {
+      setSelectedCategories(selectedCategories.filter(category => category !== categoryName));
+    } else {
+      setSelectedCategories([...selectedCategories, categoryName]);
+    }
+  };
+
   return (
     <div className="add-local-container">
       <div className="back-button-add-local">
-        <Link to="/locals">
+        <Link to={isProManager ? '/pro-manager-home' : '/locals'}>
           <span>&lt;</span>
         </Link>
       </div>
@@ -115,13 +149,13 @@ const AddLocal = () => {
         </div>
         <form className='add-form' onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="discoName">Nombre del Lugar:</label>
+            <label htmlFor="discoName">*Nombre del Lugar:</label>
             <input
               type="text"
               id="discoName"
               value={discoName}
               onChange={(e) => setDiscoName(e.target.value)}
-
+              autoComplete='off'
               placeholder='Ej: Nombre del local o fiesta'
             />
           </div>
@@ -132,7 +166,7 @@ const AddLocal = () => {
               id="ubication"
               value={ubication}
               onChange={(e) => setUbication(e.target.value)}
-
+              autoComplete='off'
               placeholder='Ej: Calle de Atocha, 125, 28012 Madrid '
             />
           </div>
@@ -143,7 +177,7 @@ const AddLocal = () => {
               id="promotion"
               value={promotion}
               onChange={(e) => setPromotion(e.target.value)}
-
+              autoComplete='off'
               placeholder='Ej: bebida + entrada...'
             />
             <p className='success-message-promotion'>*Bebidas: (Refresco, cerveza, copa, etc )*</p>
@@ -155,7 +189,7 @@ const AddLocal = () => {
               id="deals"
               value={deals}
               onChange={(e) => setDeals(e.target.value)}
-
+              autoComplete='off'
               placeholder='Ej: 15 €'
             />
           </div>
@@ -171,7 +205,7 @@ const AddLocal = () => {
                 placeholderText="Seleccione una fecha"
                 autoComplete="off"
               />
-              <button className="add-date-button" onClick={handleAddDate}>
+              <button type="button" className="add-date-button" onClick={handleAddDate}>
                 Agregar Fecha
               </button>
             </div>
@@ -192,11 +226,12 @@ const AddLocal = () => {
               type="text"
               id="hour"
               value={hour}
+              autoComplete='off'
               onChange={(e) => setHour(e.target.value)}
               placeholder='Ej: Entrada antes de la 1:30 a.m.'
             />
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="categories">Categorías:</label>
             <select
               id="categories"
@@ -210,9 +245,10 @@ const AddLocal = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
+
           <div>
-            <label htmlFor="imgUrl">Imagen:</label>
+            <label htmlFor="imgUrl">*Imagen:</label>
             <input
               type="file"
               id="imgUrl"
@@ -222,18 +258,34 @@ const AddLocal = () => {
               <p className="selected-message">{selectMessage}</p>
             )}
           </div>
-          <button type="submit">Add Local</button>
+          <button type="submit" disabled={redirect}>Add Local</button>
           {setMessage ? (<p className="success-message">{message}</p>) : (<p className="success-message">*No se ha podido añadir el local*</p>)}
         </form>
-        {/* {requiredFieldsEmpty && (
-          <p className="error-message">Todos los campos son obligatorios</p>
-        )} */}
         {redirect && (
           <Link to="/locals">
             <div className="icons8-volver">Volver</div>
           </Link>
         )}
       </div>
+      <div className='categories-container'>
+        <label htmlFor="categories" className='label'>*Selecciona categorías:</label>
+        <div className='categories-list'>
+          {categories.map(category => (
+            <label key={category.name}>
+              <input
+                type="checkbox"
+                value={category.name}
+                checked={selectedCategories.includes(category.name)}
+                onChange={handleCategoryChange}
+              />
+              {category.name}
+            </label>
+          ))}
+        </div>
+      </div>
+      {requiredFieldsEmpty && (
+        <p className="add-local-error-message">Por favor, complete todos los campos obligatorios(*)</p>
+      )}
     </div>
 
   );

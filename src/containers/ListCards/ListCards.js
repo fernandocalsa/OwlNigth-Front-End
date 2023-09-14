@@ -1,11 +1,12 @@
 import LocalCard from "../../components/LocalCard/LocalCard";
 import React, { useState, useEffect } from "react";
-import "./style.css";
+import "./ListCards.css";
 import axios from "axios";
 
-const ListCards = () => {
+const ListCards = ({ isProManager, customStyle }) => {
 
   const [locals, setLocals] = useState([]);
+
 
   useEffect(() => {
     fetchData();
@@ -21,13 +22,17 @@ const ListCards = () => {
   };
 
   return (
-    <div className="frame">
-      <div className="local-card-list">
-      {locals.map((local) => (
-        <LocalCard key={local.id} localInfo={local} />
-      ))}
+    <>
+      <div className="list-cards-locals" style={customStyle}>
+        <div className="frame-list-cards">
+          <div className="local-card-list" style={customStyle}>
+            {locals.map((local) => (
+              <LocalCard key={local.id} localInfo={local} />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default ListCards;

@@ -5,28 +5,21 @@
 }
 
 .desktop {
-  background-color: #0b161b;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
+  background-color: #0b161b !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
 
 }
 
-.desktop .div {
-  background-color: #0b161b;
-  height: 2054px;
-  width: 1440px;
-}
-
-.desktop .overlap {
+.desktop .overlap-locals-page {
   height: auto;
   top: 37px;
-  width: 1440px;
+  width: 95%;
 }
 
 .desktop .overlap-group {
-  height: 577px;
+  /* height: 577px; */
   position: absolute;
   top: 138px;
   width: inherit;
@@ -36,6 +29,8 @@
 
 .desktop .rectangle-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
 
 }
 
@@ -67,14 +62,14 @@
   width: 31px !important;
 }
 
-.desktop .group {
+/* .desktop .group {
   border-radius: 47.5px;
   height: 95px;
   left: 71px;
   position: absolute;
   top: 0;
   width: 95px;
-}
+} */
 
 .desktop .img {
   height: 68px;
@@ -104,11 +99,18 @@
   left: 436px;
   letter-spacing: 0;
   line-height: 110.6px;
-  position: absolute;
   text-align: center;
   text-shadow: 0px 2.97px 7px #c0f4ff;
   top: 255px;
   width: 569px;
+}
+
+.desktop .element-OFF:hover {
+  color: #fb33a8;
+  /* Cambia el color al pasar el ratón a rosa */
+  text-shadow: 0px 2.97px 7px #fb33a8;
+  /* Agrega un efecto de sombra rosa */
+  /* Otras propiedades para el hover */
 }
 
 .desktop .span {
@@ -125,7 +127,17 @@
   line-height: 82.9px;
 }
 
-.desktop .p {
+.banner-text-offerts {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: relative !important;
+  bottom: 350px !important;
+  left: 0 !important;
+}
+
+.desktop .p-offerts {
   color: #c0f4ff;
   font-family: "Poppins-Medium", Helvetica;
   font-size: 57.3px;
@@ -133,10 +145,16 @@
   left: 430px;
   letter-spacing: 0;
   line-height: 54.7px;
-  position: absolute;
   text-align: center;
   top: 130px;
   width: 580px;
+}
+
+.desktop .p-offerts:hover {
+  color: #fbfafb;
+  text-shadow: 2px 2.97px 7px #fb33a8;
+  /* Cambia el color del texto a rosa al pasar el ratón */
+  /* Agregar cualquier otra propiedad deseada para el hover */
 }
 
 .desktop .text-wrapper-3 {
@@ -189,7 +207,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-} 
+}
 
 .add-local,
 .edit-local {
@@ -202,24 +220,9 @@
   cursor: pointer;
   margin: 10px;
   transition: background-color 0.3s;
-} 
+}
 
 .add-local:hover,
 .edit-local:hover {
   background-color: #fb33a8;
-}
-
-.desktop .element-OFF:hover {
-  color: #fb33a8; /* Cambia el color al pasar el ratón a rosa */
-  text-shadow: 0px 2.97px 7px #fb33a8; /* Agrega un efecto de sombra rosa */
-  /* Otras propiedades para el hover */
-}
-.desktop .p:hover {
-  color: #fbfafb;
-  text-shadow: 2px 2.97px 7px #fb33a8;/* Cambia el color del texto a rosa al pasar el ratón */
-  /* Agregar cualquier otra propiedad deseada para el hover */
-}
-
-.no-banner {
-  margin-top: -200px; /* Ajusta este valor según tu diseño */
 }

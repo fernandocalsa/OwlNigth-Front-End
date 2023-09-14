@@ -30,11 +30,11 @@
   /* padding: 10px; */
 }
 
-.login-overlap-group {
+/* .login-overlap-group {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-}
+} */
 
 .login-overlap-group-wrapper {
   width: 50%;
@@ -101,7 +101,11 @@ input[type="file"] {
   border-radius: 8px;
   font-size: 20px;
   background-color: #46b1b81a;
-  color: #037171;
+  color: #22a3a3;
+}
+input::selection {
+  background-color: transparent;
+  color: #ffffff;
 }
 
 button[type="submit"] {
@@ -120,15 +124,6 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #46b1b81a;
 }
-
-/* label {
-  color: #C0F4FF;
-} */
-
-/* .form-wrapper {
-  width: 100%;
-} */
-
 
 form .input-field {
   width: 100%;
@@ -197,10 +192,11 @@ form .input-field {
   cursor: pointer;
   transition: transform 0.3s;
   width: 12px;
+  z-index: 1;
 
 }
 
-.back-button:hover {
+.back-button-add-local:hover {
   transform: scale(1.2);
 }
 
@@ -209,21 +205,8 @@ form .input-field {
   opacity: 0.9;
 }
 
-/* Estilos para el contenedor del formulario */
-/* .form-container {
-  width: 50%;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #163439;
-} */
-
 .form-container {
-  width: 50%;
+  width: 80%;
   border-radius: 10px;
   padding: 20px;
   margin: 0 auto;
@@ -235,16 +218,6 @@ form .input-field {
   align-items: center;
   overflow: hidden;
 }
-
-/* .form-container-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
-  padding: 20px;
-  margin: 0 auto;
-} */
 
 label {
   color: #C0F4FF;
@@ -427,4 +400,92 @@ button[type="submit"]:hover {
 
 .add-date-button:hover {
   background-color: #3CC6C7;
+}
+
+
+/* Estilo para el contenedor principal de categorías */
+
+.categories-container {
+  width: 40%;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgba(22, 52, 57, 0.1); /* Fondo semi-transparente */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+
+.categories-container .label{
+  margin-top: 15px;
+  position: relative;
+  right: 100px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+/* Estilo para la etiqueta de categorías */
+.categories-container label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Estilo para la lista de categorías */
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 8px;
+  position: relative;
+  right: 70px;
+}
+
+/* Estilo para cada etiqueta de categoría */
+.categories-list label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+/* Estilo para el checkbox */
+.categories-list input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  /* Añade estilo adicional, como bordes y colores */
+  border: 2px solid #007bff; /* Cambia el color del borde según tus preferencias */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-right: 7px;
+}
+
+/* Estilo para el texto de la categoría */
+.categories-list label span {
+  font-weight: normal;
+}
+
+/* Estilo para el texto de la categoría */
+.categories-list label span {
+  font-weight: normal;
+}
+
+.add-local-error-message {
+  color: #e76565; /* Color del texto blanco */
+  padding: 10px; /* Espaciado interior */
+  text-align: center; /* Alinea el texto al centro */
+  position: absolute; /* Posicionamiento absoluto para superponerlo */
+  top: 130px;
+  left: 60%; /* Ajusta la posición horizontal según sea necesario */
+  right: 0; /* Ajusta la posición horizontal según sea necesario */
+  margin: auto; /* Centra horizontalmente */
+  width: 20%; /* Ancho del mensaje */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+  z-index: 1; /* Coloca el mensaje encima de otros elementos */
+  font-size: 20px;
 }

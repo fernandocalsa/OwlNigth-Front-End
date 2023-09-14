@@ -12,6 +12,8 @@ import { DateProvider } from './components/DateContext/DateContext'; // Importa 
 import BookingPage from './pages/BookingsPage/BookingsPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import { LastLocalProvider } from './connect/Context';
+import ProManagerHome from './containers/ProManager/ProManager'
+import ListProManagerCards from './containers/ListProManagerCards/ListProManagerCards';
 
 
 function App() {
@@ -27,13 +29,14 @@ function App() {
             <Route element={<HeaderLayout />}>
               {/* A PARTIR DE AQUÍ LAS PÁGINAS SE MUESTRAN CON EL HEADERLAYOUT Y EL MENU PRINCIPAL DE LA PÁGINA */}
               <Route path="/locals" element={<Locals />} />
+              {/* <Route path="/cards-configuration" element={<ListProManagerCards />} /> */}
               <Route path="/newspage" element={<NewsPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/user-profile" element={<Profile />} />
               <Route path="/library" element={<UserLibraryPage />} />
               <Route path="/booking/:localId" element={<BookingPage />} />
               TODO
-              {/* <Route path="/" element={<ProManagerHome />} /> */}
+              <Route path="/pro-manager-home" element={<ProManagerHome />} />
             </Route>
           </Routes>
           </DateProvider>

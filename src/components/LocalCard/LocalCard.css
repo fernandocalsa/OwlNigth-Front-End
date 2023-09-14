@@ -7,7 +7,7 @@
 }
 
 .desktop .overlap-group-2 {
-  height: 535px;
+  height: 600px;
   position: relative;
   z-index: 1;
   border-radius: 15.498px;
@@ -56,14 +56,13 @@
 .desktop .element-entrada-antes-de {
   color: #f1f1f1;
   font-family: "Poppins-Medium", Helvetica;
-  font-size: 15.5px;
+  font-size: 1.2rem; /* Tamaño de fuente ajustado para pantallas grandes */
   font-weight: 400;
-  left: 57px;
   letter-spacing: 0;
-  line-height: 13.1px;
+  line-height: 1.5rem; /* Espaciado de línea ajustado para pantallas grandes */
   position: absolute;
   top: 413px;
-  width: 256px;
+  width: 80%; /* Ancho ajustado para pantallas grandes */
   left: 50%;
   transform: translateX(-50%);
 }
@@ -86,19 +85,19 @@
   left: 3px !important;
   top: 2px;
 }
-
 .desktop .refresco-cerveza-o {
   color: #46b1b8;
   font-family: "Poppins-LightItalic", Helvetica;
-  font-size: 14.5px;
+  font-size: 1.1rem; /* Tamaño de fuente ajustado para pantallas grandes */
   font-style: italic;
   font-weight: 300;
-  left: 51px;
   letter-spacing: 0;
-  line-height: 12.2px;
+  line-height: 1.2rem; /* Espaciado de línea ajustado para pantallas grandes */
   position: absolute;
   top: 387px;
-  width: 312px;
+  width: 80%; /* Ancho ajustado para pantallas grandes */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .desktop .rectangle-4 {
@@ -127,15 +126,16 @@
 .desktop .text-wrapper-10 {
   color: #ffffff;
   font-family: "Poppins-Bold", Helvetica;
-  font-size: 36.6px;
+  font-size: 2.5rem; /* Tamaño de fuente ajustado para pantallas grandes */
   font-weight: 700;
-  left: 31px;
   letter-spacing: 0;
-  line-height: 30.9px;
+  line-height: 2.8rem; /* Espaciado de línea ajustado para pantallas grandes */
   position: absolute;
   text-shadow: 0px 4.89px 7.34px #00000099;
   top: 204px;
-  width: 267px;
+  width: 80%; /* Ancho ajustado para pantallas grandes */
+  left: 40%;
+  transform: translateX(-50%);
 }
 
 .desktop .text-wrapper-11 {
@@ -173,14 +173,16 @@
 .desktop .local-available-dates {
   color: #46b1b8;
   font-family: "Poppins-LightItalic", Helvetica;
-  font-size: 14.5px;
+  font-size: 1.1rem; /* Tamaño de fuente ajustado para pantallas grandes */
   font-style: italic;
   font-weight: 300;
-  left: 51px;
-  line-height: 12.2px;
+  letter-spacing: 0;
+  line-height: 1.2rem; /* Espaciado de línea ajustado para pantallas grandes */
   position: absolute;
   top: 300px;
-  width: 312px;
+  width: 80%; /* Ancho ajustado para pantallas grandes */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .desktop .text-wrapper-15 {
@@ -279,23 +281,59 @@
 }
 
 .edit-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente los campos de edición */
+  justify-content: center; /* Centra verticalmente los campos de edición */
   margin-top: 10px;
   position: relative;
   z-index: 2;
 }
 
-.save-button {
+.edit-buttons-fields {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente los botones */
+  margin-top: 10px;
+  z-index: 2;
+}
+
+/* Estilo para los botones Guardar y Cancelar */
+.edit-buttons button {
+  margin: 0 10px; /* Agrega espacio entre los botones */
+}
+
+.edit-input-text {
+  max-width: 250px; /* Ajusta este valor según tu preferencia */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-wrapper-10, .text-wrapper-11, .text-wrapper-13, .local-available-dates {
+  max-width: 250px; /* Ajusta este valor según tu preferencia */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.save-button,
+.cancel-button {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #007BFF;
+  width: 150px; /* Ajusta el ancho según tu preferencia */
+  padding: 10px 0; /* Espacio vertical en el botón */
+  background-color: #12847c;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
+  margin: 0 auto; /* Esto centra horizontalmente el botón */
 }
 
-.save-button:hover {
-  background-color: #0056b3;
+.save-button:hover,
+.cancel-button:hover {
+  background-color: #46b1b8;
 }
 
 .reserve-button-container {
@@ -316,7 +354,7 @@
   border: none;
   width: 250px!important;
   border-radius: 5px;
-  margin: 10px;
+  margin: 85px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease!important;
   font-size: 20px!important;
@@ -336,4 +374,41 @@
   font-weight: 600;
   letter-spacing: 3.72px;
   line-height: 24.8px;
+}
+
+.delete-confirmation {
+  position: absolute;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  width: 300px;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.delete-confirmation button {
+  margin: 5px;
+  padding: 8px 20px;
+  background-color: #46B2B9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.delete-confirmation button:hover {
+  background-color: #46B2B9;
+}
+
+@media screen and (max-width: 768px) {
+  .desktop .text-wrapper-10,
+  .desktop .element-entrada-antes-de,
+  .desktop .local-available-dates,
+  .desktop .refresco-cerveza-o {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
 }

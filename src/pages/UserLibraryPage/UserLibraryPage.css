@@ -20,4 +20,21 @@
 
 .back-login {
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-back-locals {
+    background-color: #52e9e9a9;
+    border: none;
+    border-radius: 8px;
+    height: 36px;
+    width: 150px;
+    margin: 20px 0;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import apiServiceInstance from '../../connect/apiService';
-import { useAuth } from "../../connect/AuthContext/AuthContext"
+import { useAuth } from "../../connect/AuthContext/AuthContext";
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ onLogin }) => {
   const [usersName, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth();
+  const { login, isProManager } = useAuth();
+  const navigate = useNavigate();
+
 
   const handleLogin = async () => {
     try {
@@ -15,6 +18,13 @@ const LoginForm = ({ onLogin }) => {
       );
       if (success) {
         login(token);
+        if (isProManager()) {
+          // Redirige al Pro Manager a ProManagerHome
+          navigate('/pro-manager-home');
+        } else {
+          // Redirige al usuario regular a la página principal, por ejemplo
+          navigate('/');
+        }
       } else {
         console.error('Error de autenticación:', errorMessage);
         onLogin(errorMessage);

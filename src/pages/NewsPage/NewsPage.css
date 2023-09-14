@@ -55,8 +55,8 @@
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
-    min-height: 350px;
-    min-width: 300px;
+    min-height: 450px;
+    min-width: 407px;
 }
 
 .custom-local-card:hover {

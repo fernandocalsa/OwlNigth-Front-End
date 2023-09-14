@@ -9,8 +9,6 @@ import { Outline24Px } from "../../components/Outline24px/Outline24px";
 import "./HomeFrame.css";
 
 const Frame = () => {
-
-
     return (
         <>
             <div className="frame">
@@ -28,7 +26,7 @@ const Frame = () => {
                     </div>
                     <div className="div">
                         <div className="text-wrapper-2">Your own Party</div>
-                        <Link to="/party" className="hover-effect">
+                        <Link to="/party" className="hover-effect-images-home">
                             <div className="overlap-group" style={{ backgroundImage: `url(${party})` }}>
                                 <div className="prepara-tu-fiesta">
                                     Prepara tu <br />
@@ -39,7 +37,7 @@ const Frame = () => {
                     </div>
                     <div className="group-2">
                         <div className="text-wrapper-3">Despedidas</div>
-                        <Link to="/brides" className="hover-effect">
+                        <Link to="/brides" className="hover-effect-images-home">
                             <div className="overlap" style={{ backgroundImage: `url(${brides})` }}>
                                 <div className="sorprende-a-la-novia">
                                     Sorprende
@@ -50,7 +48,7 @@ const Frame = () => {
                     </div>
                     <div className="group-3">
                         <div className="text-wrapper-3">Conciertos</div>
-                        <Link to="/concerts" className="hover-effect">
+                        <Link to="/concerts" className="hover-effect-images-home">
                             <div className="overlap-2" style={{ backgroundImage: `url(${newTalents})` }}>
                                 <div className="text-wrapper-4">Descubre nuevos talentos</div>
                             </div>
@@ -59,7 +57,7 @@ const Frame = () => {
                     <div className="group-4">
                         <div className="text-wrapper-5">¡NOVEDAD!</div>
                         <div className="div-2">
-                            <Link to="/newspage" className="hover-effect">
+                            <Link to="/newspage" className="hover-effect-images-home">
                                 <img className="img" alt="Rectangle" src={beer} />
                             </Link>
                             <p className="p">Fiesta de la Cerveza <br />
@@ -71,7 +69,7 @@ const Frame = () => {
                     <div className="group-5">
                         <div className="text-wrapper-6">All Nigths</div>
                         <div className="div-3">
-                            <Link to="/locals" className="hover-effect">
+                            <Link to="/locals" className="hover-effect-images-home">
                                 <img className="img" alt="Rectangle" src={disco} />
                             </Link>
                             <p className="p1">Baila por las mejores discotecas de Madrid</p>

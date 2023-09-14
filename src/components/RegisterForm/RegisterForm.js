@@ -93,9 +93,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="register-form">
+    <div className="register-form-container">
       <div className="form-wrapper">
-        <label className="email">Email:</label>
+        <label className="label-inputs-register">Email:</label>
         <input
           type="text"
           className="input-field"
@@ -104,7 +104,7 @@ const RegisterForm = () => {
         />
       </div>
       <div className="form-wrapper">
-        <label className="username">Nombre:</label>
+        <label className="label-inputs-register">Nombre:</label>
         <input
           type="text"
           className="input-field"
@@ -115,7 +115,7 @@ const RegisterForm = () => {
         />
       </div>
       <div className="form-wrapper">
-        <label className="password">Contraseña:</label>
+        <label className="label-inputs-register">Contraseña:</label>
         <input
           type="password"
           className="input-field"
@@ -124,7 +124,7 @@ const RegisterForm = () => {
         />
       </div>
       <div className="form-wrapper">
-        <label className="dni">DNI:</label>
+        <label className="label-inputs-register">DNI:</label>
         <input
           type="text"
           className="input-field"
@@ -133,7 +133,7 @@ const RegisterForm = () => {
         />
       </div>
       <div className="form-wrapper">
-        <label className="age">Edad:</label>
+        <label className="label-inputs-register">Edad:</label>
         <input
           type="text"
           className="input-field"

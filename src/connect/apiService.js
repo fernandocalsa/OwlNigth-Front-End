@@ -105,6 +105,7 @@ const apiServiceInstance = {
   addLocal: async (localData) => {
     try {
       const response = await instance.post('/locals/add/upload', localData);
+      console.log(response, "prueba de categorías, esto es el response")
       return response.data;
     } catch (error) {
       console.error('Error adding local:', error);
@@ -112,7 +113,15 @@ const apiServiceInstance = {
     }
   },
 
-  //deleteLocal
+  deleteLocalById: async (localById) => {
+    try {
+      const response = await instance.delete(`/locals/${localById}`);
+      return response.data;
+    } catch (error) {
+      console.log("Error al borrar el local")
+    }
+  },
+
 
   getLatestLocals: async () => {
     try {

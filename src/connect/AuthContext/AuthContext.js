@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [datesFromAddLocal, setDatesFromAddLocal] = useState([]);
 
 
-  // const [localData, setLocalData] = useState(null);
   const isProManager = () => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -87,8 +86,6 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={{
       token, login, logout, isProManager,
       user, userName, getDatesFromAddLocal, datesFromAddLocal, getUserBookings
-      // getLocalContext,
-      //  setLocalData
     }}>
       {children}
     </AuthContext.Provider>

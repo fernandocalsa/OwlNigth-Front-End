@@ -10,8 +10,9 @@ const LocalCard = ({ localInfo }) => {
   const { token, setLocalData, isProManager } = useAuth();
   const { availableDates } = useDateContext();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedFields, setEditedFields] = useState({});
-  const [newLocalInfo, setNewLocalInfo] = useState(localInfo)
+  const [editedFields, setEditedFields] = useState({ ...localInfo });
+  // const [newLocalInfo, setNewLocalInfo] = useState(localInfo);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // Nuevo estado
   const navigate = useNavigate();
 
   const handleReservation = async () => {
@@ -30,25 +31,52 @@ const LocalCard = ({ localInfo }) => {
     }
   };
 
+  const handleDeleteLocal = async (localById) => {
+    if (!showDeleteConfirmation) {
+      setShowDeleteConfirmation(true); // Mostrar el mensaje de advertencia
+    } else {
+      try {
+        await apiServiceInstance.deleteLocalById(localById);
+        window.location.reload();
+        console.log(localById, "este es el ide del local seleccionado");
+      } catch (error) {
+        console.error('Error al eliminar el local:', error);
+      }
+    }
+  };
+
+
   //LÓGICA PARA LA EDICIÓN DE PROMANAGER
   const handleEdit = () => {
     setIsEditing(true);
-    setEditedFields(newLocalInfo);
-    console.log(newLocalInfo, "esto es el eddiiiit")
+    // setEditedFields({ ...localInfo });
+    // console.log(editedFields, "esto es el eddiiiit")
   };
 
   const handleSave = async () => {
     try {
       if (isEditing) {
-        await apiServiceInstance.updateLocals(newLocalInfo._id, editedFields);
+        const response = await apiServiceInstance.updateLocals(localInfo._id, editedFields);
         setIsEditing(false);
-        const updatedLocal = await apiServiceInstance.getLocalById(newLocalInfo._id);
-        setNewLocalInfo(updatedLocal);
-        console.log(updatedLocal, "este es el saveee");
+        // setEditedFields(response);
+        // const updatedLocal = await apiServiceInstance.getLocalById(localInfo._id);
+        // setEditedFields(updatedLocal)
+        // console.log(updatedLocal, "este es el saveee");
       }
     } catch (error) {
       console.error("Error al guardar cambios:", error);
     }
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    // Restaura los valores originales en caso de cancelar la edición
+    // setEditedFields({ ...localInfo });
+  };
+  const handleChange = (e) => {
+    // Manejar cambios en los campos de edición
+    const { name, value } = e.target;
+    setEditedFields({ ...editedFields, [name]: value });
   };
 
   // const changeFormatDate = () => { //recorte de fecha para poder mostrarla en el formato que quiero
@@ -66,55 +94,61 @@ const LocalCard = ({ localInfo }) => {
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
           <img className="rectangle-2" alt={localInfo.id} src={localInfo.imgUrl} />
-          {isEditing ? (
+          {showDeleteConfirmation ? (
+            <div className="delete-confirmation">
+              ¿Seguro que quieres borrar este local?
+              <button onClick={() => setShowDeleteConfirmation(false)}>Cancelar</button>
+            </div>
+          ) : isEditing ? (
             <div className="edit-fields">
-              {/* Campo para editar el nombre del local */}
               <input
                 type="text"
                 className="edit-input-text"
+                name="discoName"
                 value={editedFields.discoName}
-                onChange={(e) =>
-                  setEditedFields({ ...editedFields, discoName: e.target.value })
-                }
+                onChange={handleChange}
               />
               <input
                 type="text"
                 className="edit-input-text"
+                name="ubication"
                 value={editedFields.ubication}
-                onChange={(e) =>
-                  setEditedFields({ ...editedFields, ubication: e.target.value })
-                }
+                onChange={handleChange}
               />
               <input
                 type="text"
                 className="edit-input-text"
+                name="promotion"
                 value={editedFields.promotion}
-                onChange={(e) =>
-                  setEditedFields({ ...editedFields, promotion: e.target.value })
-                }
+                onChange={handleChange}
               />
               <input
-                type="text"
-                className="edit-input-text"
-                value={editedFields.availableDates}
-                onChange={(e) =>
-                  setEditedFields({ ...editedFields, availableDates: e.target.value })
-                }
+              type="text"
+              className="edit-input-text"
+              name="availableDates"
+              value={editedFields.availableDates}
+              onChange={handleChange}
+              />
+               <input
+              type="text"
+              className="edit-input-text"
+              name="categories"
+              value={editedFields.categories}
+              onChange={handleChange}
               />
             </div>
           ) : (
-            // Contenido normal de la card
 
+            // Contenido normal de la card
             <div>
               {/* <div className="text-wrapper-10">
               {editedFields ? newLocalInfo.discoName : localInfo.discoName}
             </div> */}
+
               <div className="text-wrapper-10">
-                {newLocalInfo.discoName || localInfo.discoName}
+                {editedFields.localInfo || localInfo.localInfo}
                 {/* Estoy haciendo las pruebas con este new.LocalInfo */}
               </div>
-
-              {/* <div className="text-wrapper-10">{newLocalInfo.discoName || localInfo.discoName}</div> */}
               <p className="element-entrada-antes-de">
                 <p className="local-category">Categorías: {localInfo.categories}</p>
                 <span className="local-deals">{localInfo.deals}€ - </span>
@@ -137,27 +171,33 @@ const LocalCard = ({ localInfo }) => {
 
           )}
           {isEditing ? (
-            <button onClick={handleSave} className="save-button">
-              Guardar Cambios
-            </button>
+            <div className="edit-buttons-fields">
+              <button className="save-button" onClick={handleSave}>
+                Guardar Cambios
+              </button>
+              <button className="cancel-button" onClick={handleCancel}>
+                Cancelar
+              </button>
+            </div>
           ) : isProManager() ? (
             <div className="edit-buttons-card">
               <button className="add-local" onClick={handleEdit}>
                 Editar
               </button>
-              <button className="edit-local">Borrar</button>
-              {/* pasar el ID a la función del API */}
+              <button className="edit-local" onClick={() => handleDeleteLocal(localInfo._id)}>
+                Borrar
+              </button>
             </div>
           ) : (
             // Botón de reserva normal
             <div className="reserve-button-container">
-              <div className="reserve-button">
+              <button className="reserve-button">
                 {token ? (
                   <Link to={`/booking/${localInfo._id}`} className=".text-wrapper-6 ">RESERVAR</Link>
                 ) : (
                   <Link to="/login&register" className=".text-wrapper-6 ">RESERVAR</Link>
                 )}
-              </div>
+              </button>
             </div>
           )}
         </div>
