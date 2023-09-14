@@ -7,8 +7,12 @@ import { DateProvider, useDateContext } from "../DateContext/DateContext";
 
 
 const LocalCard = ({ localInfo }) => {
-  const { token, setLocalData } = useAuth();
-  const{ availableDates }= useDateContext();
+  const { token, setLocalData, isProManager } = useAuth();
+  const { availableDates } = useDateContext();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedFields, setEditedFields] = useState({ ...localInfo });
+  // const [newLocalInfo, setNewLocalInfo] = useState(localInfo);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // Nuevo estado
   const navigate = useNavigate();
 
   const handleReservation = async () => {
@@ -21,15 +25,59 @@ const LocalCard = ({ localInfo }) => {
         const response = await apiServiceInstance.getLocalById(localInfo._id);
         console.log(response, "este es el Local");
         setLocalData(response);
-        // navigate(`/booking/${localInfo._id}`);
       }
     } catch (error) {
       console.error('Error al crear reserva:', error);
     }
   };
 
-  console.log(localInfo.categories, "estas son las categorías");
-  console.log(localInfo.availableDates, "estas son las fechas");
+  const handleDeleteLocal = async (localById) => {
+    if (!showDeleteConfirmation) {
+      setShowDeleteConfirmation(true); // Mostrar el mensaje de advertencia
+    } else {
+      try {
+        await apiServiceInstance.deleteLocalById(localById);
+        window.location.reload();
+        console.log(localById, "este es el ide del local seleccionado");
+      } catch (error) {
+        console.error('Error al eliminar el local:', error);
+      }
+    }
+  };
+
+
+  //LÓGICA PARA LA EDICIÓN DE PROMANAGER
+  const handleEdit = () => {
+    setIsEditing(true);
+    // setEditedFields({ ...localInfo });
+    // console.log(editedFields, "esto es el eddiiiit")
+  };
+
+  const handleSave = async () => {
+    try {
+      if (isEditing) {
+        const response = await apiServiceInstance.updateLocals(localInfo._id, editedFields);
+        setIsEditing(false);
+        // setEditedFields(response);
+        // const updatedLocal = await apiServiceInstance.getLocalById(localInfo._id);
+        // setEditedFields(updatedLocal)
+        // console.log(updatedLocal, "este es el saveee");
+      }
+    } catch (error) {
+      console.error("Error al guardar cambios:", error);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    // Restaura los valores originales en caso de cancelar la edición
+    // setEditedFields({ ...localInfo });
+  };
+  const handleChange = (e) => {
+    // Manejar cambios en los campos de edición
+    const { name, value } = e.target;
+    setEditedFields({ ...editedFields, [name]: value });
+  };
 
   // const changeFormatDate = () => { //recorte de fecha para poder mostrarla en el formato que quiero
   //   if (localInfo && localInfo.availableDates) {
@@ -46,38 +94,112 @@ const LocalCard = ({ localInfo }) => {
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
           <img className="rectangle-2" alt={localInfo.id} src={localInfo.imgUrl} />
-          <button className="rectangle-3">
-            <div className="text-wrapper-6"
-              onClick={handleReservation}
-            >{token ? (
-              <Link to={`/booking/${localInfo._id}`}>RESERVAR</Link>
-              // ?? este link?
-            ) : (
-              <Link to="/login&register">RESERVAR</Link>
-            )}
-            </div></button>
-          <p className="element-entrada-antes-de">
-            <p className="local-category">Categorías: {localInfo.categories}</p>
-            <span className="local-deals">{localInfo.deals}€ - </span>
-            <span className="local-hour">{localInfo.hour}</span>
-          </p>
-          <p className="refresco-cerveza-o"> (Refresco, cerveza, copa, etc )</p>
-          {/* <div className="rectangle-4" />
-          <div className="text-wrapper-9">TOP TODAY</div>  */}
-          {/* filtro de si el local está en la categoría 'novedad' poner en el top today */}
+          {showDeleteConfirmation ? (
+            <div className="delete-confirmation">
+              ¿Seguro que quieres borrar este local?
+              <button onClick={() => setShowDeleteConfirmation(false)}>Cancelar</button>
+            </div>
+          ) : isEditing ? (
+            <div className="edit-fields">
+              <input
+                type="text"
+                className="edit-input-text"
+                name="discoName"
+                value={editedFields.discoName}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                className="edit-input-text"
+                name="ubication"
+                value={editedFields.ubication}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                className="edit-input-text"
+                name="promotion"
+                value={editedFields.promotion}
+                onChange={handleChange}
+              />
+              <input
+              type="text"
+              className="edit-input-text"
+              name="availableDates"
+              value={editedFields.availableDates}
+              onChange={handleChange}
+              />
+               <input
+              type="text"
+              className="edit-input-text"
+              name="categories"
+              value={editedFields.categories}
+              onChange={handleChange}
+              />
+            </div>
+          ) : (
 
-          <div className="text-wrapper-10">{localInfo.discoName}</div>
-          <p className="text-wrapper-11">{localInfo.ubication}</p>
-          <p className="div-2">
-            <span className="text-wrapper-12">Oferta: </span>
-            <span className="text-wrapper-13">{localInfo.promotion}</span>
-          </p>
-          <p className="local-available-dates">
-            {/* Fechas disponibles: {changeFormatDate()} */}
-                        Fechas disponibles: {availableDates}
+            // Contenido normal de la card
+            <div>
+              {/* <div className="text-wrapper-10">
+              {editedFields ? newLocalInfo.discoName : localInfo.discoName}
+            </div> */}
 
-          </p>
+              <div className="text-wrapper-10">
+                {editedFields.localInfo || localInfo.localInfo}
+                {/* Estoy haciendo las pruebas con este new.LocalInfo */}
+              </div>
+              <p className="element-entrada-antes-de">
+                <p className="local-category">Categorías: {localInfo.categories}</p>
+                <span className="local-deals">{localInfo.deals}€ - </span>
+                <span className="local-hour">{localInfo.hour}</span>
+              </p>
+              <p className="refresco-cerveza-o"> (Refresco, cerveza, copa, etc )</p>
+              {/* <div className="rectangle-4" />
+            <div className="text-wrapper-9">TOP TODAY</div>  */}
+              {/* filtro de si el local está en la categoría 'novedad' poner en el top today */}
+              <div className="text-wrapper-10">{localInfo.discoName}</div>
+              <p className="text-wrapper-11">{localInfo.ubication}</p>
+              <p className="div-2">
+                <span className="text-wrapper-12">Oferta: </span>
+                <span className="text-wrapper-13">{localInfo.promotion}</span>
+              </p>
+              <p className="local-available-dates">
+                Fechas disponibles: {availableDates}
+              </p>
+            </div>
 
+          )}
+          {isEditing ? (
+            <div className="edit-buttons-fields">
+              <button className="save-button" onClick={handleSave}>
+                Guardar Cambios
+              </button>
+              <button className="cancel-button" onClick={handleCancel}>
+                Cancelar
+              </button>
+            </div>
+          ) : isProManager() ? (
+            <div className="edit-buttons-card">
+              <button className="add-local" onClick={handleEdit}>
+                Editar
+              </button>
+              <button className="edit-local" onClick={() => handleDeleteLocal(localInfo._id)}>
+                Borrar
+              </button>
+            </div>
+          ) : (
+            // Botón de reserva normal
+            <div className="reserve-button-container">
+              <button className="reserve-button">
+                {token ? (
+                  <Link to={`/booking/${localInfo._id}`} className=".text-wrapper-6 ">RESERVAR</Link>
+                ) : (
+                  <Link to="/login&register" className=".text-wrapper-6 ">RESERVAR</Link>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

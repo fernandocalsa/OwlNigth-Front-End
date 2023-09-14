@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import apiServiceInstance from '../../connect/apiService';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../connect/AuthContext/AuthContext'
 import DatePicker from 'react-datepicker';
 import owl from "../../images/logoOwl.png"
 import { format } from 'date-fns';
@@ -24,31 +25,45 @@ const AddLocal = () => {
   const [redirect, setRedirect] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [currentDate, setCurrentDate] = useState(null);
+  const [error, setError] = useState(false);
+  const { isProManager } = useAuth();
+  const [requiredFieldsEmpty, setRequiredFieldsEmpty] = useState(false);
+
+  const resetForm = () => {
+    setDiscoName('');
+    setUbication('');
+    setPromotion('');
+    setDeals('');
+    setHour('');
+    setimgUrl(null);
+    setAvailableDates([]);
+    setSelectedDate(initialDate);
+    setMessage('');
+    setSelectMessage('');
+    setImgSelected(false);
+    setRedirect(false);
+    setSelectedCategories([]);
+    setCurrentDate(null);
+  };
+
 
   const handleDateChange = (date) => {
     setCurrentDate(date);
   };
 
-  const handleAddDate = () => {
+  const handleAddDate = (event) => {
+    event.preventDefault();
     if (currentDate && !availableDates.includes(currentDate)) {
       const formattedDate = format(currentDate, 'yyyy-MM-dd');
-      // Actualiza el array de fechas en el contexto DateContext
       setAvailableDates([...availableDates, formattedDate]);
-      setCurrentDate(null); // Limpia la fecha actual después de agregarla
-      console.log(availableDates, "QUE COÑO ES ESTO???")
+      setCurrentDate(null);
     }
   };
-
-
 
   const handleRemoveDate = (dateToRemove) => {
     const updatedDates = availableDates.filter((date) => date !== dateToRemove);
     setAvailableDates(updatedDates);
   };
-
-
-
-  console.log(availableDates, "AQUI ESTA MI ARRAY!!!!");
 
   const handleImageChange = (event) => {
     setimgUrl(event.target.files[0]);
@@ -58,6 +73,18 @@ const AddLocal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!discoName || selectedCategories.length === 0) {
+      setRequiredFieldsEmpty(true);
+      setError(true);
+      return;
+    }
+    if (!imgUrl) {
+      setRequiredFieldsEmpty(true);
+      setError(true);
+      setMessage('La imagen es un campo obligatorio.');
+      return;
+    }
 
     const formattedDates = selectedDate.toISOString();
     console.log(formattedDates, "formattedDates");
@@ -70,16 +97,19 @@ const AddLocal = () => {
     formData.append('hour', hour);
     formData.append('promotion', promotion);
     // formData.append('date', date);
-    formData.append('availableDates', formattedDates);
-    formData.append('categories', selectedCategories);
-
+    formData.append('availableDates', JSON.stringify(availableDates));
+    formData.append('categories', JSON.stringify(selectedCategories));
+    setRequiredFieldsEmpty(false);
     try {
       const response = await apiServiceInstance.addLocal(formData);
+      resetForm();
       setMessage('*Local Añadido Correctamente*');
       setRedirect(true);
+
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error:', error);
+      setMessage('No se ha podido añadir el local');
     }
   };
 
@@ -92,10 +122,19 @@ const AddLocal = () => {
   ];
 
 
+  const handleCategoryChange = (event) => {
+    const categoryName = event.target.value;
+    if (selectedCategories.includes(categoryName)) {
+      setSelectedCategories(selectedCategories.filter(category => category !== categoryName));
+    } else {
+      setSelectedCategories([...selectedCategories, categoryName]);
+    }
+  };
+
   return (
     <div className="add-local-container">
       <div className="back-button-add-local">
-        <Link to="/locals">
+        <Link to={isProManager ? '/pro-manager-home' : '/locals'}>
           <span>&lt;</span>
         </Link>
       </div>
@@ -105,18 +144,18 @@ const AddLocal = () => {
       <div className="form-container">
         <div className="login-overlap">
           <div className="login-overlap-group">
-            <h1 className="text-init">Añadir Oferta</h1>
+            <h1 className="text-init">Añadir Local</h1>
           </div>
         </div>
         <form className='add-form' onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="discoName">Nombre del Lugar:</label>
+            <label htmlFor="discoName">*Nombre del Lugar:</label>
             <input
               type="text"
               id="discoName"
               value={discoName}
               onChange={(e) => setDiscoName(e.target.value)}
-              required
+              autoComplete='off'
               placeholder='Ej: Nombre del local o fiesta'
             />
           </div>
@@ -127,20 +166,10 @@ const AddLocal = () => {
               id="ubication"
               value={ubication}
               onChange={(e) => setUbication(e.target.value)}
-              required
+              autoComplete='off'
               placeholder='Ej: Calle de Atocha, 125, 28012 Madrid '
             />
           </div>
-          {/* <div>
-            <label htmlFor="date">Date:</label>
-            <input
-              type="text"
-              id="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </div> */}
           <div>
             <label htmlFor="promotion">Promoción:</label>
             <input
@@ -148,7 +177,7 @@ const AddLocal = () => {
               id="promotion"
               value={promotion}
               onChange={(e) => setPromotion(e.target.value)}
-              required
+              autoComplete='off'
               placeholder='Ej: bebida + entrada...'
             />
             <p className='success-message-promotion'>*Bebidas: (Refresco, cerveza, copa, etc )*</p>
@@ -160,51 +189,55 @@ const AddLocal = () => {
               id="deals"
               value={deals}
               onChange={(e) => setDeals(e.target.value)}
-              required
+              autoComplete='off'
               placeholder='Ej: 15 €'
             />
           </div>
-          <div>
-            <label>Selecciona una fecha:</label>
-            <DatePicker
-              id="date"
-              selected={currentDate}
-              onChange={handleDateChange}
-              dateFormat="yyyy-MM-dd"
-              isClearable
-              placeholderText="Seleccione una fecha"
-              required
-            />
-            <button onClick={handleAddDate}>Agregar Fecha</button>
+          <div className='date-picker-container'>
+            <label htmlFor="date">Selecciona una fecha:</label>
+            <div className="date-picker">
+              <DatePicker
+                id="date"
+                selected={currentDate}
+                onChange={handleDateChange}
+                dateFormat="yyyy-MM-dd"
+                isClearable
+                placeholderText="Seleccione una fecha"
+                autoComplete="off"
+              />
+              <button type="button" className="add-date-button" onClick={handleAddDate}>
+                Agregar Fecha
+              </button>
+            </div>
+            <ul className='list-of-dates'>
+              {availableDates.map((date, index) => (
+                <li key={index} className="date-item">
+                  {date}
+                  <button className="remove-date-button" onClick={() => handleRemoveDate(date)}>
+                    Eliminar
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul>
-            {availableDates.map((date, index) => (
-              <li key={index}>
-                {date}
-                <button onClick={() => handleRemoveDate(date)}>Eliminar</button>
-              </li>
-            ))}
-          </ul>
-
           <div>
             <label htmlFor="hour">Hora de entrada:</label>
             <input
               type="text"
               id="hour"
               value={hour}
+              autoComplete='off'
               onChange={(e) => setHour(e.target.value)}
-              required
               placeholder='Ej: Entrada antes de la 1:30 a.m.'
             />
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="categories">Categorías:</label>
             <select
               id="categories"
               multiple
               value={selectedCategories}
               onChange={(e) => setSelectedCategories(Array.from(e.target.selectedOptions, (option) => option.value))}
-              required
             >
               {categories.map((category) => (
                 <option key={category.name} value={category.name}>
@@ -212,21 +245,21 @@ const AddLocal = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
+
           <div>
-            <label htmlFor="imgUrl">Imagen:</label>
+            <label htmlFor="imgUrl">*Imagen:</label>
             <input
               type="file"
               id="imgUrl"
               onChange={handleImageChange}
-              required
             />
             {imgSelected && (
               <p className="selected-message">{selectMessage}</p>
             )}
           </div>
-          <button type="submit">Add Local</button>
-          {message ? (<p className="success-message">{message}</p>) : (<p className="success-message">*No se ha podido añadir el local*</p>)}
+          <button type="submit" disabled={redirect}>Add Local</button>
+          {setMessage ? (<p className="success-message">{message}</p>) : (<p className="success-message">*No se ha podido añadir el local*</p>)}
         </form>
         {redirect && (
           <Link to="/locals">
@@ -234,6 +267,25 @@ const AddLocal = () => {
           </Link>
         )}
       </div>
+      <div className='categories-container'>
+        <label htmlFor="categories" className='label'>*Selecciona categorías:</label>
+        <div className='categories-list'>
+          {categories.map(category => (
+            <label key={category.name}>
+              <input
+                type="checkbox"
+                value={category.name}
+                checked={selectedCategories.includes(category.name)}
+                onChange={handleCategoryChange}
+              />
+              {category.name}
+            </label>
+          ))}
+        </div>
+      </div>
+      {requiredFieldsEmpty && (
+        <p className="add-local-error-message">Por favor, complete todos los campos obligatorios(*)</p>
+      )}
     </div>
 
   );

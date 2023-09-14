@@ -2,15 +2,12 @@ import React, { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
 import apiServiceInstance from '../../connect/apiService';
 
-// Crea el contexto
 const DateContext = createContext();
 
-// Hook personalizado para acceder al contexto
 export const useDateContext = () => {
     return useContext(DateContext);
 };
 
-// Proveedor del contexto
 export const DateProvider = ({ children }) => {
     const [availableDates, setAvailableDates] = useState([]);
 
@@ -19,7 +16,6 @@ export const DateProvider = ({ children }) => {
         console.log(newDates);
         console.log(setAvailableDates);
     };
-    // Función para obtener las fechas disponibles desde el servidor
   const fetchAvailableDates = async () => {
     try {
       const response = await apiServiceInstance.getAvailableDates();
@@ -31,7 +27,6 @@ export const DateProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // Llama a la función para cargar las fechas disponibles cuando se monta el componente
     fetchAvailableDates();
   }, []);
 

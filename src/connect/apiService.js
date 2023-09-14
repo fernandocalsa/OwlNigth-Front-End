@@ -105,9 +105,31 @@ const apiServiceInstance = {
   addLocal: async (localData) => {
     try {
       const response = await instance.post('/locals/add/upload', localData);
+      console.log(response, "prueba de categorías, esto es el response")
       return response.data;
     } catch (error) {
       console.error('Error adding local:', error);
+      throw error;
+    }
+  },
+
+  deleteLocalById: async (localById) => {
+    try {
+      const response = await instance.delete(`/locals/${localById}`);
+      return response.data;
+    } catch (error) {
+      console.log("Error al borrar el local")
+    }
+  },
+
+
+  getLatestLocals: async () => {
+    try {
+      const response = await instance.get('/locals/news');
+      console.log(response.data, "ESTOS SON LOS 3 LOCALES QUE BUSCO")
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener los últimos locales:', error);
       throw error;
     }
   },
@@ -149,24 +171,24 @@ const apiServiceInstance = {
   getUserBookings: async (userId) => {
     try {
       const response = await instance.get(`/bookings/usersnight/${userId}`);
-      return response.data.bookings; // Devuelve las reservas del usuario
+      return response.data.bookings;
     } catch (error) {
       console.error('Error al obtener las reservas del usuario:', error);
-      throw error; // Puedes manejar el error de la manera que desees
+      throw error;
     }
   },
 
 
-// getAvailableDates: async () => { // si no sirve porque me funciona la de getLocalById esta se borra
-//   try {
-//     const response = await instance.get('/dates'); // Ruta que corresponde a obtener las fechas disponibles desde el servidor
-//     const availableDates = response.data.availableDates; // Ajusta esto según la estructura de tu respuesta del servidor
-//     return availableDates;
-//   } catch (error) {
-//     console.error('Error al obtener las fechas disponibles:', error);
-//     throw error;
-//   }
-// },
+  // getAvailableDates: async () => { // si no sirve porque me funciona la de getLocalById esta se borra
+  //   try {
+  //     const response = await instance.get('/dates'); // Ruta que corresponde a obtener las fechas disponibles desde el servidor
+  //     const availableDates = response.data.availableDates; // Ajusta esto según la estructura de tu respuesta del servidor
+  //     return availableDates;
+  //   } catch (error) {
+  //     console.error('Error al obtener las fechas disponibles:', error);
+  //     throw error;
+  //   }
+  // },
 
   createBooking: async (userId, localId, dates, token) => {
     try {
@@ -181,7 +203,21 @@ const apiServiceInstance = {
         },
       });
       console.log(response.data, "este es el response.data de createBooking");
-      return response.data; // Esto devolverá la respuesta del servidor, que incluye el mensaje y los datos de la reserva si fue exitosa.
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la reserva:', error);
+      throw error;
+    }
+  },
+
+  updateLocals: async (localById, updatedFields) => {
+    try {
+      const editFields = await instance.patch(`/locals/${localById}`, updatedFields)
+      // console.log(updatedFields, "estos son los updatedFields");
+      // console.log(response, "este es el response de update local");
+      console.log(editFields, "este es el response.data de updatelocal");
+
+      return editFields;
     } catch (error) {
       console.error('Error al realizar la reserva:', error);
       throw error;

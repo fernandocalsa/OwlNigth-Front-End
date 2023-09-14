@@ -86,7 +86,6 @@ const Profile = () => {
                         src={avatarImg || avatar}
                         alt="Avatar del usuario"
                     />
-                    {/* Botón para guardar imagen de perfil */}
                     {editAvatar && (
                         <button className="save-avatar-button">
                             Guardar imagen de perfil
