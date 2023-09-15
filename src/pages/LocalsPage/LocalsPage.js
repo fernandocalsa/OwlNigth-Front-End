@@ -27,29 +27,24 @@ const Locals = () => {
   const { isProManager } = useAuth();
 
   const listCardsStyle = isProManager()
-    ? { marginTop: "0px" } // Sin margen superior si es un "Pro Manager" 
-    : { marginTop: "550px" }; // Margen superior de 550px si no es un "Pro Manager"
-
+    ? { marginTop: "0px" }
+    : { marginTop: "550px" };
   return (
     <>
       <div className="desktop">
         <div className="div">
           {!isProManager() ? (
-            <>
-              <div className="desktop">
-                <div className="overlap-locals-page">
-                  <Banner />
-                </div>
-                <div className="cards-above-banner">
-                  <ListCards className="list-cards-locals" customStyle={listCardsStyle} />
-                </div>
+            <><div className="desktop">
+              <div className="overlap-locals-page">
+                <Banner />
               </div>
+              <div className="cards-above-banner">
+                <ListCards className="list-cards-locals" customStyle={listCardsStyle} />
+              </div>
+            </div>
               <div className="text-wrapper-5">All Nights</div>
             </>
-          ) : (
-            true
-          )}
-
+          ) : (true)}
           {isProManager() && (
             <div className="cards-above-banner">
               <ListCards className="list-cards-locals" customStyle={listCardsStyle} />

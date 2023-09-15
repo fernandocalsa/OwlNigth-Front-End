@@ -1,5 +1,4 @@
 .desktop .overlap-group-wrapper {
-  height: 555px;
   left: 109px;
   top: 780px;
   width: 362px;
@@ -56,20 +55,20 @@
 .desktop .element-entrada-antes-de {
   color: #f1f1f1;
   font-family: "Poppins-Medium", Helvetica;
-  font-size: 1.2rem; /* Tamaño de fuente ajustado para pantallas grandes */
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.5rem; /* Espaciado de línea ajustado para pantallas grandes */
+  line-height: 1.5rem;
   position: absolute;
   top: 413px;
-  width: 80%; /* Ancho ajustado para pantallas grandes */
+  width: 80%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .desktop .local-deals {
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: 900;
+  font-size: 16px;
   top: 2px;
   left: 0px;
   position: relative;
@@ -85,17 +84,18 @@
   left: 3px !important;
   top: 2px;
 }
+
 .desktop .refresco-cerveza-o {
   color: #46b1b8;
   font-family: "Poppins-LightItalic", Helvetica;
-  font-size: 1.1rem; /* Tamaño de fuente ajustado para pantallas grandes */
+  font-size: 14px;
   font-style: italic;
   font-weight: 300;
   letter-spacing: 0;
-  line-height: 1.2rem; /* Espaciado de línea ajustado para pantallas grandes */
+  line-height: 1.2rem;
   position: absolute;
   top: 387px;
-  width: 80%; /* Ancho ajustado para pantallas grandes */
+  width: 80%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -126,14 +126,14 @@
 .desktop .text-wrapper-10 {
   color: #ffffff;
   font-family: "Poppins-Bold", Helvetica;
-  font-size: 2.5rem; /* Tamaño de fuente ajustado para pantallas grandes */
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0;
-  line-height: 2.8rem; /* Espaciado de línea ajustado para pantallas grandes */
+  line-height: 2.8rem;
   position: absolute;
   text-shadow: 0px 4.89px 7.34px #00000099;
   top: 204px;
-  width: 80%; /* Ancho ajustado para pantallas grandes */
+  width: 80%;
   left: 40%;
   transform: translateX(-50%);
 }
@@ -143,7 +143,7 @@
   font-family: "Poppins-Regular", Helvetica;
   font-size: 15.5px;
   font-weight: 400;
-  left: 51px;
+  left: 36px;
   position: absolute;
   top: 275px;
   width: 295px;
@@ -152,12 +152,13 @@
 .desktop .div-2 {
   color: #f1f1f1;
   font-family: "Poppins-Light", Helvetica;
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 400;
-  left: 51px;
+  position: absolute;
+  left: 36px;
   letter-spacing: 0;
   line-height: 19.7px;
-  top: 334px;
+  top: 368px;
   width: 295px;
 }
 
@@ -171,18 +172,31 @@
 }
 
 .desktop .local-available-dates {
-  color: #46b1b8;
+  color: #ffff;
   font-family: "Poppins-LightItalic", Helvetica;
-  font-size: 1.1rem; /* Tamaño de fuente ajustado para pantallas grandes */
+  font-size: 16px !important;
   font-style: italic;
   font-weight: 300;
   letter-spacing: 0;
-  line-height: 1.2rem; /* Espaciado de línea ajustado para pantallas grandes */
-  position: absolute;
-  top: 300px;
-  width: 80%; /* Ancho ajustado para pantallas grandes */
-  left: 50%;
+  line-height: 1.2rem;
+  position: relative;
+  top: 35px !important;
+  width: 80%;
+  left: 160px !important;
+  margin-top: 10px;
   transform: translateX(-50%);
+}
+
+.date-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.date-item {
+  color: #46b1b8;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .desktop .text-wrapper-15 {
@@ -283,8 +297,8 @@
 .edit-fields {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente los campos de edición */
-  justify-content: center; /* Centra verticalmente los campos de edición */
+  align-items: center;
+  justify-content: center;
   margin-top: 10px;
   position: relative;
   z-index: 2;
@@ -292,25 +306,27 @@
 
 .edit-buttons-fields {
   display: flex;
-  justify-content: center; /* Centra horizontalmente los botones */
+  justify-content: center;
   margin-top: 10px;
   z-index: 2;
 }
 
-/* Estilo para los botones Guardar y Cancelar */
 .edit-buttons button {
-  margin: 0 10px; /* Agrega espacio entre los botones */
+  margin: 0 10px;
 }
 
 .edit-input-text {
-  max-width: 250px; /* Ajusta este valor según tu preferencia */
+  max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.text-wrapper-10, .text-wrapper-11, .text-wrapper-13, .local-available-dates {
-  max-width: 250px; /* Ajusta este valor según tu preferencia */
+.text-wrapper-10,
+.text-wrapper-11,
+.text-wrapper-13,
+.local-available-dates {
+  max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -320,15 +336,15 @@
 .save-button,
 .cancel-button {
   display: inline-block;
-  width: 150px; /* Ajusta el ancho según tu preferencia */
-  padding: 10px 0; /* Espacio vertical en el botón */
+  width: 150px;
+  padding: 10px 0;
   background-color: #12847c;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
-  margin: 0 auto; /* Esto centra horizontalmente el botón */
+  margin: 0 auto;
 }
 
 .save-button:hover,
@@ -338,8 +354,8 @@
 
 .reserve-button-container {
   position: absolute;
-  top: 460px!important;
-  left: 55px!important;
+  top: 460px !important;
+  left: 55px !important;
   width: 259px;
   display: flex;
   flex-direction: column;
@@ -352,14 +368,14 @@
   color: #fff;
   padding: 10px 15px;
   border: none;
-  width: 250px!important;
+  width: 250px !important;
   border-radius: 5px;
   margin: 85px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease!important;
-  font-size: 20px!important;
-  font-weight: 600!important;
-  text-align: center!important;
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
 }
 
 .reserve-button:hover {
@@ -404,6 +420,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
   .desktop .text-wrapper-10,
   .desktop .element-entrada-antes-de,
   .desktop .local-available-dates,
@@ -411,4 +428,15 @@
     font-size: 1.5rem;
     line-height: 1.8rem;
   }
+}
+
+.input-addon {
+  position: absolute;
+  top: 50%;
+  right: 38px;
+  bottom: 72px;
+  transform: translateY(-50%);
+  color: #037171;
+  font-size: 20px;
+  font-weight: 600;
 }

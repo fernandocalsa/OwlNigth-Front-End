@@ -3,19 +3,20 @@
     padding: 0px;
 }
 
-.foot{
+.foot {
     display: flex;
     justify-content: center;
     padding-bottom: 30px;
 }
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Mínimo 100% del viewport en altura */
-    max-width: 100%; /* Ancho máximo que se adapta a la pantalla */
-    margin: 0 auto; /* Margen horizontal automático para centrar */
-    padding: 20px; /* Espaciado interno de 20px */
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
-  }
+    min-height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}

@@ -7,28 +7,21 @@ const BookingCard = ({ booking }) => {
 
     const [localData, setLocalData] = useState(null);
     const [userData, setUserData] = useState(null);
-    const [qrCodeContent, setQRCodeContent] = useState(null);
 
     useEffect(() => {
         const fetchLocalData = async () => {
             try {
                 const localInfo = await apiServiceInstance.getLocalById(booking.localId);
                 setLocalData(localInfo);
-                console.log(localData, " esta es la info pa imprimir")
             } catch (error) {
                 console.error('Error al obtener los datos del local:', error);
             }
         };
+
         const fetchUserData = async () => {
             try {
                 const userData = await apiServiceInstance.getUserData();
                 setUserData(userData);
-                console.log(userData, "esta es la info del usuario que va en el qr");
-                const contentObject = {
-                    userId: userData.userId,
-                    userName: userData.userName,
-                };
-                setQRCodeContent(JSON.stringify(contentObject));
             } catch (error) {
                 console.error('Error al obtener los datos del usuario:', error);
             }
@@ -40,14 +33,16 @@ const BookingCard = ({ booking }) => {
         }
     }, [booking.localId]);
 
-    const changeFormatDate = () => {//recorte de fecha para poder mostrarla en el formato que quiero
-        if (localData && localData.availableDates) {
-            const completeDate = localData.availableDates;
-            const separateDate = completeDate.split('T');
-            const dateIWant = separateDate[0];
-            return dateIWant;
+    const deleteBookingById = async (bookingId) => {
+        try {
+            const response = await apiServiceInstance.deleteBookingById(bookingId);
+            if (response) {
+            } else {
+                console.error('Error al eliminar la reserva');
+            }
+        } catch (error) {
+            console.error('Error al eliminar la reserva:', error);
         }
-        return '';
     };
 
     return (
@@ -86,12 +81,11 @@ const BookingCard = ({ booking }) => {
             </div>
             <div className="qr-code">
                 {userData ? (
-                    <QRPage userData={userData} />
+                    <QRPage userData={userData} onDeleteBooking={() => deleteBookingById(booking._id)} bookingId={booking._id} />
                 ) : (
                     <p>Cargando información del usuario...</p>
                 )}
                 <div className="qr-text">Escanea el QR</div>
-
             </div>
         </div>
     );

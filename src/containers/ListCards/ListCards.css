@@ -1,11 +1,13 @@
 .local-card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  /* margin-top: 550px; */
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  width: 80% !important;
+  margin: auto !important;
 }
-.pro-manager{
+
+.pro-manager {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

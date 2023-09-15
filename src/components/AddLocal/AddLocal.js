@@ -18,6 +18,9 @@ const AddLocal = () => {
   const [imgUrl, setimgUrl] = useState(null);
   const initialDate = new Date();
   const [availableDates, setAvailableDates] = useState([]);
+
+  console.log(availableDates, "estos son fechitasasssssss");
+
   const [selectedDate, setSelectedDate] = useState(initialDate);
   const [message, setMessage] = useState('');
   const [selectMessage, setSelectMessage] = useState('');
@@ -45,7 +48,6 @@ const AddLocal = () => {
     setSelectedCategories([]);
     setCurrentDate(null);
   };
-
 
   const handleDateChange = (date) => {
     setCurrentDate(date);
@@ -96,9 +98,8 @@ const AddLocal = () => {
     formData.append('ubication', ubication);
     formData.append('hour', hour);
     formData.append('promotion', promotion);
-    // formData.append('date', date);
-    formData.append('availableDates', JSON.stringify(availableDates));
-    formData.append('categories', JSON.stringify(selectedCategories));
+    formData.append('availableDates', (availableDates));
+    formData.append('categories', (selectedCategories));
     setRequiredFieldsEmpty(false);
     try {
       const response = await apiServiceInstance.addLocal(formData);
@@ -120,7 +121,6 @@ const AddLocal = () => {
     { name: "Celebraciones y Eventos" },
     { name: "Novedades" },
   ];
-
 
   const handleCategoryChange = (event) => {
     const categoryName = event.target.value;
@@ -231,22 +231,6 @@ const AddLocal = () => {
               placeholder='Ej: Entrada antes de la 1:30 a.m.'
             />
           </div>
-          {/* <div>
-            <label htmlFor="categories">Categorías:</label>
-            <select
-              id="categories"
-              multiple
-              value={selectedCategories}
-              onChange={(e) => setSelectedCategories(Array.from(e.target.selectedOptions, (option) => option.value))}
-            >
-              {categories.map((category) => (
-                <option key={category.name} value={category.name}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div> */}
-
           <div>
             <label htmlFor="imgUrl">*Imagen:</label>
             <input

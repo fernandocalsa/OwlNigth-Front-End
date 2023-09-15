@@ -76,7 +76,7 @@ a {
     color: #c0f3ff;
 }
 
-.my-profile-menu{
+.my-profile-menu {
     color: #c0f3ff;
     font-family: "Poppins-SemiBold", Helvetica;
     font-size: 20px;
@@ -87,7 +87,8 @@ a {
     top: 0;
     padding-right: 30px;
 }
-.my-profile-menu:hover{
+
+.my-profile-menu:hover {
     text-decoration: underline;
 }
 
@@ -152,5 +153,3 @@ a {
 .menu .logout-promanager:hover {
     text-decoration: underline;
 }
-
-

@@ -19,10 +19,8 @@ const LoginForm = ({ onLogin }) => {
       if (success) {
         login(token);
         if (isProManager()) {
-          // Redirige al Pro Manager a ProManagerHome
           navigate('/pro-manager-home');
         } else {
-          // Redirige al usuario regular a la página principal, por ejemplo
           navigate('/');
         }
       } else {
@@ -58,7 +56,6 @@ const LoginForm = ({ onLogin }) => {
       <button type="button" className="button-wrapper" onClick={handleLogin}>
         Log in
       </button>
-      {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
     </form>
   );
 };

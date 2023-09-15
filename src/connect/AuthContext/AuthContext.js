@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     setTimeout(() => {
       navigate("/")
     }, 1000);
-    if(!token){
+    if (!token) {
       navigate("/");
       console.log("La sesion ha expirado")
     }

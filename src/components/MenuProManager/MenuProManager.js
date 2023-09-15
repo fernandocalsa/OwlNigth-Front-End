@@ -9,8 +9,7 @@ const MenuProManager = () => {
             <ul className="menu-list-pro">
                 <li className="menu-item-pro">
                     <Link to='/locals'>
-                        <button className="menu-button-pro">Locales</button> 
-                        {/* // hacer la lógica de que si es pro manager solo me muestre las cards */}
+                        <button className="menu-button-pro">Locales</button>
                     </Link>
                 </li>
                 <li className="menu-item-pro">

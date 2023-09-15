@@ -7,7 +7,6 @@ const ListCards = ({ isProManager, customStyle }) => {
 
   const [locals, setLocals] = useState([]);
 
-
   useEffect(() => {
     fetchData();
   }, []);

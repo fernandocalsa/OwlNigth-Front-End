@@ -21,31 +21,27 @@ function NavBar() {
                     </li>
                     {token ? (
                         <>{isProManager() ? (
-                            <>
-                                <li>
-                                    <Link className='add-local-promanager' to='/form'>
-                                        Añadir Local
-                                    </Link>
-                                </li>
+                            <><li>
+                                <Link className='add-local-promanager' to='/form'>
+                                    Añadir Local
+                                </Link>
+                            </li>
                                 <li>
                                     <Link className='logout-promanager' onClick={logout}>
                                         Cerrar Sesión
                                     </Link>
-                                </li>
-                            </>
+                                </li></>
                         ) : (
-                            <>
-                                <li className='bookings'>
-                                    <Link to='/library'>Reservas</Link>
-                                </li>
+                            <><li className='bookings'>
+                                <Link to='/library'>Reservas</Link>
+                            </li>
                                 <li className='mi-perfil'>
                                     {userName.profilePath ? (
                                         <Link to={userName.profilePath}>{userName}</Link>
                                     ) : (
                                         <Link to="/user-profile" className='my-profile-menu'>Mi Perfil</Link>
                                     )}
-                                </li>
-                            </>
+                                </li></>
                         )}
                         </>
                     ) : (

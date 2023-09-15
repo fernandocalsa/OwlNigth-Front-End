@@ -25,18 +25,17 @@ const NewsPage = () => {
         </p>
       </div>
       <div className="list-news-container">
-      {lastLocals.map((local) => (
+        {lastLocals.map((local) => (
           <Link
             key={local._id}
             to={token ? `/booking/${local._id}` : '/login&register'}
             className="custom-local-link"
             onClick={(e) => {
               if (!token) {
-                e.preventDefault(); // Evita la navegación si no está autenticado
-                navigate('/login&register'); // Redirige a la página de inicio de sesión
+                e.preventDefault();
+                navigate('/login&register');
               }
-            }}
-          >
+            }}>
             <div className="custom-local-card" key={local._id}>
               <img
                 className="custom-local-image"

@@ -3,27 +3,25 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    max-width: 100%; /* Asegura que no exceda el ancho de la pantalla */
-    margin: 0 auto; /* Centra horizontalmente */
-  }
-  @media screen and (min-width: 30em) and (orientation: landscape) {
-    .frame .rectangle {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-  
-  .frame .rectangle {
-    /* height: auto; */
     max-width: 100%;
-    /* width: 100%; */
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 30em) and (orientation: landscape) {
+    .frame .rectangle {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.frame .rectangle {
+    height: 90vh !important;
+    max-width: 100%;
     position: relative;
-    /* z-index: 1; */
     top: -68px;
     left: -755px;
-    /* transform: translate(-50%, -50%); */
     text-align: center;
-  }
+}
 
 .frame .group {
     height: 174px;
@@ -340,7 +338,7 @@
     background-color: #fbab49;
     border-radius: 8.53px;
     height: 20px;
-    left: 36px;
+    left: 44px;
     position: absolute;
     top: 219px;
     width: 127px;
@@ -358,11 +356,11 @@
     top: 222px;
     width: 134px;
 }
+
 .hover-effect-images-home {
     transition: transform 0.3s ease;
 }
 
-/* Aplica el efecto de escala al hacer hover */
 .hover-effect-images-home:hover {
     transform: scale(1.1);
     opacity: 0.7;

@@ -75,7 +75,6 @@ const Frame = () => {
                             <p className="p1">Baila por las mejores discotecas de Madrid</p>
                             <div className="rectangle-3" />
                             <div className="text-wrapper-7">MAKE RESERVATION</div>
-
                         </div>
                     </div>
                 </div>
