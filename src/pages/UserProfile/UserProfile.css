@@ -107,7 +107,7 @@
 }
 
 .save-avatar-button:hover {
-  background-color: #3cc6c7;
+  background-color: #923cc7;
 }
 
 .logout-button {
@@ -115,7 +115,7 @@
   border: none;
   border-radius: 8px;
   height: 36px;
-  width: 541px;
+  width: 182px;
   margin: 20px 0;
   color: #ffffff;
   font-size: 18px;
@@ -139,7 +139,7 @@
 }
 
 .logout-button:hover {
-  background-color: #3cc6c7;
+  background-color: #923cc7;
 }
 
 .name-wrapper-1,
@@ -166,4 +166,57 @@
 .edit-age-button {
   margin-left: 10px;
   width: 100%;
+}
+
+.button-profile-update {
+  background-color: #52e9e92e;
+  border: none;
+  border-radius: 8px;
+  height: 36px;
+  width: 541px;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  left: 165px;
+}
+
+.button-profile-delete {
+  background-color: #52e9e9a9;
+  border: none;
+  border-radius: 8px;
+  height: 36px;
+  width: 242px;
+  margin: 20px 0;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  left: 1px;
+  bottom: 34px;
+}
+
+input[type="email"] {
+  width: 400px;
+  padding: 10px;
+  margin: 2px 0;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: #46b1b81a;
+  color: #22a3a3;
+}
+input[type="number"]{
+  width: 400px;
+  padding: 10px;
+  margin: 2px 0;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: #46b1b81a;
+  color: #22a3a3;
 }

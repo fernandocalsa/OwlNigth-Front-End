@@ -5,17 +5,17 @@ import apiServiceInstance from '../../connect/apiService';
 const DateContext = createContext();
 
 export const useDateContext = () => {
-    return useContext(DateContext);
+  return useContext(DateContext);
 };
 
 export const DateProvider = ({ children }) => {
-    const [availableDates, setAvailableDates] = useState([]);
+  const [availableDates, setAvailableDates] = useState([]);
 
-    const setDates = (newDates) => {
-        setAvailableDates(newDates);
-        console.log(newDates);
-        console.log(setAvailableDates);
-    };
+  const setDates = (newDates) => {
+    setAvailableDates(newDates);
+    console.log(newDates);
+    console.log(setAvailableDates);
+  };
   const fetchAvailableDates = async () => {
     try {
       const response = await apiServiceInstance.getAvailableDates();
@@ -30,9 +30,9 @@ export const DateProvider = ({ children }) => {
     fetchAvailableDates();
   }, []);
 
-    return (
-        <DateContext.Provider value={{ availableDates, setAvailableDates, setDates, fetchAvailableDates }}>
-            {children}
-        </DateContext.Provider>
-    );
+  return (
+    <DateContext.Provider value={{ availableDates, setAvailableDates, setDates, fetchAvailableDates }}>
+      {children}
+    </DateContext.Provider>
+  );
 };

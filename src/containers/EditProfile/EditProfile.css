@@ -1,0 +1,75 @@
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #163439;
+    border-radius: 10px;
+    padding: 2%;
+    margin: 0 auto;
+    color: #c0f4ff;
+    max-width: max-content;
+    overflow: hidden;
+    width: 100%;
+}
+
+.form-group-edit-box {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #c0f4ff;
+}
+
+.form-group-edit-box label {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.form-group-edit-box input[type="text"],
+.form-group-edit-box input[type="email"],
+.form-group-edit-box input[type="number"] {
+    border: 1px solid #46b1b8;
+    border-radius: 10px;
+    height: 41px;
+    width: 100%;
+    padding: 10px;
+    color: #ffffff;
+    font-family: "Poppins-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    background-color: transparent;
+    outline: none;
+}
+
+.form-group-edit-box input[type="file"] {
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.form-group-edit-box img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+button[type="submit"] {
+    background-color: #52e9e9a9;
+    border: none;
+    border-radius: 8px;
+    height: 36px;
+    margin: 20px 0;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #3cc6c7;
+}

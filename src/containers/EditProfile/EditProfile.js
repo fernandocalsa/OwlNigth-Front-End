@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import './EditProfile.css';
 
 const EditProfile = ({ userData, onSave }) => {
-  const { name: initialName, email: initialEmail, age: initialAge, profileImage: initialProfileImage } = userData;
+  const { usersName: name, email: initialEmail, age: initialAge, avatarImg: initialProfileImage } = userData;
 
-  const [name, setName] = useState(initialName);
+  const [usersName, setUsersName] = useState(name);
   const [email, setEmail] = useState(initialEmail);
   const [age, setAge] = useState(initialAge);
   const [profileImage, setProfileImage] = useState(initialProfileImage);
   const [newProfileImage, setNewProfileImage] = useState(null);
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -16,38 +18,42 @@ const EditProfile = ({ userData, onSave }) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         setProfileImage(e.target.result);
-        setNewProfileImage(file); 
+        setNewProfileImage(file);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedUserData = {
-      name,
+    const updateUserFields = {
+      usersName,
       email,
       age,
       profileImage: newProfileImage || initialProfileImage,
     };
-    onSave(updatedUserData);
+    try {
+      await onSave(updateUserFields);
+    } catch (error) {
+      console.error('Error al guardar cambios:', error);
+    }
   };
 
   return (
     <div className="edit-profile-container">
       <h2>Editar Perfil</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group-edit-box">
           <label>Nombre:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label>Correo Electrónico:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label>Edad:</label>
-          <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+          <input type="text" value={name} onChange={(e) => setUsersName(e.target.value)} />
+          <div className="form-group">
+            <label>Correo Electrónico:</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label>Edad:</label>
+            <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+          </div>
         </div>
         <div className="form-group">
           <label>Foto de Perfil:</label>

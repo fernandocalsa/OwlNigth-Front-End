@@ -7,7 +7,8 @@ const ProManagerHome = () => {
   return (
     <div className="pro-manager-frame">
       <div className="background">
-        <img className="second-owl-img" src={owlBackground} alt="Owl" />
+        <img className="second-owl-img"
+          src={owlBackground} alt="Owl" />
       </div>
       <MenuProManager />
     </div>

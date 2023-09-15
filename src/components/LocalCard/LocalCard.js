@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./LocalCard.css";
 import apiServiceInstance from "../../connect/apiService";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../connect/AuthContext/AuthContext";
-import { DateProvider, useDateContext } from "../DateContext/DateContext";
+import { useDateContext } from "../DateContext/DateContext";
 
 
 const LocalCard = ({ localInfo }) => {
@@ -33,7 +33,7 @@ const LocalCard = ({ localInfo }) => {
 
   const handleDeleteLocal = async (localById) => {
     if (!showDeleteConfirmation) {
-      setShowDeleteConfirmation(true); // Mostrar el mensaje de advertencia
+      setShowDeleteConfirmation(true);
     } else {
       try {
         await apiServiceInstance.deleteLocalById(localById);
@@ -45,12 +45,8 @@ const LocalCard = ({ localInfo }) => {
     }
   };
 
-
-  //LÓGICA PARA LA EDICIÓN DE PROMANAGER
   const handleEdit = () => {
     setIsEditing(true);
-    // setEditedFields({ ...localInfo });
-    // console.log(editedFields, "esto es el eddiiiit")
   };
 
   const handleSave = async () => {
@@ -58,36 +54,21 @@ const LocalCard = ({ localInfo }) => {
       if (isEditing) {
         const response = await apiServiceInstance.updateLocals(localInfo._id, editedFields);
         setIsEditing(false);
-        // setEditedFields(response);
-        // const updatedLocal = await apiServiceInstance.getLocalById(localInfo._id);
-        // setEditedFields(updatedLocal)
-        // console.log(updatedLocal, "este es el saveee");
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error al guardar cambios:", error);
     }
   };
+  console.log(editedFields.availableDates, "ESTAS SON LAS FECASSSSS");
 
   const handleCancel = () => {
     setIsEditing(false);
-    // Restaura los valores originales en caso de cancelar la edición
-    // setEditedFields({ ...localInfo });
   };
   const handleChange = (e) => {
-    // Manejar cambios en los campos de edición
     const { name, value } = e.target;
     setEditedFields({ ...editedFields, [name]: value });
   };
-
-  // const changeFormatDate = () => { //recorte de fecha para poder mostrarla en el formato que quiero
-  //   if (localInfo && localInfo.availableDates) {
-  //     const completeDate = localInfo.availableDates;
-  //     const separateDate = completeDate.split('T');
-  //     const dateIWant = separateDate[0];
-  //     return dateIWant;
-  //   }
-  //   return '';
-  // };
 
   return (
     <>
@@ -118,36 +99,40 @@ const LocalCard = ({ localInfo }) => {
               <input
                 type="text"
                 className="edit-input-text"
+                name="deals"
+                value={editedFields.deals}
+                onChange={handleChange}
+                placeholder="Precio"
+              />
+              <span className="input-addon">€</span>
+              <input
+                type="text"
+                className="edit-input-text"
                 name="promotion"
                 value={editedFields.promotion}
                 onChange={handleChange}
               />
               <input
-              type="text"
-              className="edit-input-text"
-              name="availableDates"
-              value={editedFields.availableDates}
-              onChange={handleChange}
+                type="text"
+                className="edit-input-text"
+                name="availableDates"
+                value={editedFields.availableDates}
+                onChange={handleChange}
               />
-               <input
-              type="text"
-              className="edit-input-text"
-              name="categories"
-              value={editedFields.categories}
-              onChange={handleChange}
+              <input
+                type="text"
+                className="edit-input-text"
+                name="categories"
+                value={editedFields.categories}
+                onChange={handleChange}
               />
             </div>
           ) : (
 
             // Contenido normal de la card
             <div>
-              {/* <div className="text-wrapper-10">
-              {editedFields ? newLocalInfo.discoName : localInfo.discoName}
-            </div> */}
-
               <div className="text-wrapper-10">
                 {editedFields.localInfo || localInfo.localInfo}
-                {/* Estoy haciendo las pruebas con este new.LocalInfo */}
               </div>
               <p className="element-entrada-antes-de">
                 <p className="local-category">Categorías: {localInfo.categories}</p>
@@ -155,9 +140,6 @@ const LocalCard = ({ localInfo }) => {
                 <span className="local-hour">{localInfo.hour}</span>
               </p>
               <p className="refresco-cerveza-o"> (Refresco, cerveza, copa, etc )</p>
-              {/* <div className="rectangle-4" />
-            <div className="text-wrapper-9">TOP TODAY</div>  */}
-              {/* filtro de si el local está en la categoría 'novedad' poner en el top today */}
               <div className="text-wrapper-10">{localInfo.discoName}</div>
               <p className="text-wrapper-11">{localInfo.ubication}</p>
               <p className="div-2">
@@ -165,10 +147,12 @@ const LocalCard = ({ localInfo }) => {
                 <span className="text-wrapper-13">{localInfo.promotion}</span>
               </p>
               <p className="local-available-dates">
-                Fechas disponibles: {availableDates}
+                Fechas disponibles:
+                {localInfo.availableDates.join(', ').split(',').map((date, index) => (
+                  <span key={index} className="date-item">{date.trim()}</span>
+                ))}
               </p>
             </div>
-
           )}
           {isEditing ? (
             <div className="edit-buttons-fields">

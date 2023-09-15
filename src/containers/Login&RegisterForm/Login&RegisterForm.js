@@ -20,13 +20,11 @@ const LoginAndRegister = () => {
 
     try {
       const response = await apiServiceInstance.usersLogin(usersName, password);
-      console.log(response, "este es el response de login");
 
       if (response.data && response.data.token) {
-        console.log(response.data, "este es el response.data");
-        console.log(response.data.token, "este es el response.data.token");
         login(response.data.token);
         const pendingLocalReservation = JSON.parse(localStorage.getItem("pendingLocalReservation"));
+
         if (pendingLocalReservation) {
           localStorage.removeItem("pendingLocalReservation");
           navigate(`/local/${pendingLocalReservation.id}`);
@@ -34,12 +32,10 @@ const LoginAndRegister = () => {
           navigate("/");
         }
       }
-
       if (typeof token === 'string' && token.trim() !== '') {
         setSessionStartTime();
         login(token);
         navigate("/");
-
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
@@ -81,8 +77,7 @@ const LoginAndRegister = () => {
           ) : (
             <LoginForm
               onLogin={(errorMessage) => console.log(errorMessage)}
-              handleLogin={handleLogin}
-            />
+              handleLogin={handleLogin} />
           )}
           <h6 className="register-link" onClick={handleShowRegisterForm}>
             {showRegisterForm ? 'Iniciar Sesión' : 'Aún no te has registrado?'}

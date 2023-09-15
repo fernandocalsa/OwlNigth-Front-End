@@ -1,9 +1,9 @@
 .register-form-container {
-  display: flex!important;
-  flex-direction: column!important;
-  align-items: center!important;
-  width: 80%; /* Cambié el ancho al 100% para asegurarme de que ocupe todo el ancho disponible */
-  max-width: 400px; /* Puedes ajustar el valor máximo según tus preferencias */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 80%;
+  max-width: 400px;
   margin: 0 auto;
 }
 

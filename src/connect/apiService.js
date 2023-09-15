@@ -6,7 +6,7 @@ const instance = axios.create({
 
 const apiServiceInstance = {
 
-  //para traer todos los locales a ALLNIGHT
+  //ALLNIGHT
   getAllPlans: async () => {
     try {
       const response = await instance.get('/locals')
@@ -16,7 +16,7 @@ const apiServiceInstance = {
     }
   },
 
-  //Login de usersNight y proManager - no me reconoce proPassword (false)
+  //Login de usersNight y proManager
   usersLogin: async (usersName, password) => {
     try {
       const response = await instance.post('/usersnight/login', {
@@ -49,9 +49,7 @@ const apiServiceInstance = {
     }
   },
 
-  //revisar función - algo me falla si la quito, me interfiere en la del login normal? - revisar
   loginProManager: async (proName, password) => {
-    //crear el login en el front
     const response = await instance.post('/proManager/loginpro', {
       proName,
       password,
@@ -83,14 +81,14 @@ const apiServiceInstance = {
         dni,
         age,
       });
-      console.log("esto es el response.data", response.data); //aquí hay posibilidad del userId
+      console.log("esto es el response.data", response.data);
       return response.data;
     } catch (error) {
       throw error;
     }
   },
 
-  //revisar función - para traer los usuarios al proManager
+  //Traer los usuarios al proManager
   getUsersNight: async () => {
     try {
       const response = await instance.get('/usersnight');
@@ -119,6 +117,15 @@ const apiServiceInstance = {
       return response.data;
     } catch (error) {
       console.log("Error al borrar el local")
+    }
+  },
+
+  deleteBookingById: async (bookingId) => {
+    try {
+      const response = await instance.delete(`/bookings/${bookingId}`);
+      return response.data;
+    } catch (error) {
+      console.log("Error al borrar la reserva")
     }
   },
 
@@ -178,18 +185,6 @@ const apiServiceInstance = {
     }
   },
 
-
-  // getAvailableDates: async () => { // si no sirve porque me funciona la de getLocalById esta se borra
-  //   try {
-  //     const response = await instance.get('/dates'); // Ruta que corresponde a obtener las fechas disponibles desde el servidor
-  //     const availableDates = response.data.availableDates; // Ajusta esto según la estructura de tu respuesta del servidor
-  //     return availableDates;
-  //   } catch (error) {
-  //     console.error('Error al obtener las fechas disponibles:', error);
-  //     throw error;
-  //   }
-  // },
-
   createBooking: async (userId, localId, dates, token) => {
     try {
       const response = await instance.post('/bookings', {
@@ -213,10 +208,6 @@ const apiServiceInstance = {
   updateLocals: async (localById, updatedFields) => {
     try {
       const editFields = await instance.patch(`/locals/${localById}`, updatedFields)
-      // console.log(updatedFields, "estos son los updatedFields");
-      // console.log(response, "este es el response de update local");
-      console.log(editFields, "este es el response.data de updatelocal");
-
       return editFields;
     } catch (error) {
       console.error('Error al realizar la reserva:', error);
@@ -224,38 +215,46 @@ const apiServiceInstance = {
     }
   },
 
+  updateUsers: async (userNightById, updateUserFields) => {
+    try {
+      const response = await instance.patch(`/usersnight/${userNightById}`, updateUserFields);
+      return response.data;
+    } catch (error) {
+      console.error('Error al actualizar los datos del usuario:', error);
+      throw error;
+    }
+  },
 
-  //Función para cambiar la imagen del Avatar - no funciona-----------------------
+  //Función para cambiar la imagen del Avatar
+  updateAvatar: async (avatarImg) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatarImg', avatarImg);
 
-  // updateAvatar: async (avatarImg) => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append('avatar', avatarImg);
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Usuario no autenticado');
+      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      };
 
-  //     const token = localStorage.getItem('token');
-  //     if (!token) {
-  //       throw new Error('Usuario no autenticado');
-  //     }
-  //     const config = {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         'Content-Type': 'multipart/form-data',
-  //       },
-  //     };
+      const response = await instance.post('/usersnight/update', formData, config);
 
-  //     const response = await instance.post('/usersnight/me/avatar', formData, config);
-
-  //     if (response.status === 200) {
-  //       console.log('Imagen de avatar actualizada con éxito');
-  //     } else {
-  //       console.error('Error al actualizar la imagen de avatar:', response.data);
-  //       throw new Error('Error al actualizar la imagen de avatar');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error al actualizar la imagen de avatar:', error);
-  //     throw error;
-  //   }
-  // }
+      if (response.status === 200) {
+        console.log('Imagen de avatar actualizada con éxito');
+      } else {
+        console.error('Error al actualizar la imagen de avatar:', response.data);
+        throw new Error('Error al actualizar la imagen de avatar');
+      }
+    } catch (error) {
+      console.error('Error al actualizar la imagen de avatar:', error);
+      throw error;
+    }
+  },
 
 };
 

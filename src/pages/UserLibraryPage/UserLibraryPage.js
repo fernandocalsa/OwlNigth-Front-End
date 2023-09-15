@@ -7,7 +7,7 @@ import BookingCard from '../../components/BokingCards/BookingCards';
 
 const UserLibraryPage = () => {
 
-  const { getUserData, token, getUserBookings, user } = useAuth();
+  const { token } = useAuth();
   const [bookingsSaved, setBookingsSaved] = useState([])
 
   const loadBookings = async () => {
@@ -15,15 +15,8 @@ const UserLibraryPage = () => {
       const response = await apiServiceInstance.getUserData();
       const userId = response._id;
 
-      console.log(userId, 'este es el id');
-
       const bookings = await apiServiceInstance.getUserBookings(userId);
-
-      console.log('Reservas del usuario:', bookings);
-
       setBookingsSaved(bookings);
-
-      console.log(bookingsSaved, 'ESTO ES LO QUE ESTOY BUSCANDO');
     } catch (error) {
       console.error('Error al obtener los datos del usuario o las reservas:', error);
     }
@@ -49,7 +42,6 @@ const UserLibraryPage = () => {
             <Link to="/locals"><button className='button-back-locals'>Volver</button></Link>
           </div>
         )}
-
       </div>
     </div>
   )
