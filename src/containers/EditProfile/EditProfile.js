@@ -56,8 +56,8 @@ const EditProfile = ({ userData, onSave }) => {
           </div>
         </div>
         <div className="form-group">
-          <label>Foto de Perfil:</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          {/* <label>Foto de Perfil:</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} /> */}
           {profileImage && (
             <img
               src={profileImage}
