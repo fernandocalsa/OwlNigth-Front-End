@@ -37,9 +37,14 @@ const Profile = () => {
     const handleEditAvatar = async () => {
         try {
             if (selectedAvatar) {
-                const response = await apiServiceInstance.updateAvatar(selectedAvatar);
-                setAvatarImg(response.data.avatarUrl);
-                setEditAvatar(false);
+                const response = await apiServiceInstance.updateAvatar(selectedAvatar, dataUser._id);
+                if (response && response.data && response.data.avatarUrl) {
+                    setAvatarImg(response.data.avatarUrl);
+                    setEditAvatar(false);
+                    console.log('Imagen de avatar actualizada con éxito');
+                } else {
+                    console.error('La respuesta del servidor no contiene la URL del avatar.');
+                }
             } else {
                 console.error('Debes seleccionar una imagen de avatar.');
             }
@@ -47,6 +52,8 @@ const Profile = () => {
             console.error('Error al actualizar la imagen de avatar:', error);
         }
     };
+    
+    
     const handleSave = async (updateUserFields) => {
         try {
             if (!dataUser._id) {
@@ -73,7 +80,7 @@ const Profile = () => {
                         <><div className="user-avatar">
                             <img
                                 className='user-image-profile'
-                                src={avatarImg || avatar}
+                                src={avatarImg || dataUser.avatarImg || avatar}
                                 alt="Avatar del usuario"
                             />
                             {editAvatar && (

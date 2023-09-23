@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
+import './qrCode.css'
 
 const QRPage = ({ userData, onDeleteBooking, bookingId }) => {
     const [isScanned, setIsScanned] = useState(false);
@@ -34,7 +35,7 @@ const QRPage = ({ userData, onDeleteBooking, bookingId }) => {
                 <>
                     <QRCode value={generateQRContent(userData)} />
                     {!isScanned && (
-                        <button onClick={handleQRCodeScan}>Escanear QR</button>
+                        <button className='qr-onclick' onClick={handleQRCodeScan}>Finalizar Reserva</button>
                     )}
                 </>
             ) : (

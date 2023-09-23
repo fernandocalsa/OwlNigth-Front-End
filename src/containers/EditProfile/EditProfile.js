@@ -27,6 +27,7 @@ const EditProfile = ({ userData, onSave }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updateUserFields = {
+      _id: userData._id, 
       usersName,
       email,
       age,
@@ -56,8 +57,8 @@ const EditProfile = ({ userData, onSave }) => {
           </div>
         </div>
         <div className="form-group">
-          <label>Foto de Perfil:</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          {/* <label>Foto de Perfil:</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} /> */}
           {profileImage && (
             <img
               src={profileImage}
