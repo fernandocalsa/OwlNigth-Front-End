@@ -27,6 +27,7 @@ const EditProfile = ({ userData, onSave }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updateUserFields = {
+      _id: userData._id, 
       usersName,
       email,
       age,

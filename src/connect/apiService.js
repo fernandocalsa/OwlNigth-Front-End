@@ -226,7 +226,7 @@ const apiServiceInstance = {
   },
 
   //Función para cambiar la imagen del Avatar
-  updateAvatar: async (avatarImg) => {
+  updateAvatar: async (avatarImg, userId) => {
     try {
       const formData = new FormData();
       formData.append('avatarImg', avatarImg);
@@ -242,7 +242,7 @@ const apiServiceInstance = {
         },
       };
 
-      const response = await instance.post('/usersnight/update', formData, config);
+      const response = await instance.post(`/usersnight/${userId}/update`, formData, config);
 
       if (response.status === 200) {
         console.log('Imagen de avatar actualizada con éxito');
