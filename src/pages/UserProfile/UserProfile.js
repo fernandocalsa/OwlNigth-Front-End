@@ -75,7 +75,7 @@ const Profile = () => {
                 <h1 className='profile-name'>Bienvenido a tu perfil, {dataUser.usersName}</h1>
                 <div className="user-info">
                     {isEditing ? (
-                        <EditProfile userData={dataUser._id} onSave={handleSave} profileImage={avatarImg} />
+                        <EditProfile userData={dataUser} onSave={handleSave} profileImage={avatarImg} />
                     ) : (
                         <><div className="user-avatar">
                             <img
