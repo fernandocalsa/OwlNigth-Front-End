@@ -37,7 +37,7 @@ a {
 
 .menu .logo-container {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 5px;
 }
 
@@ -116,7 +116,7 @@ a {
     .menu li {
         display: flex;
         flex-direction: row;
-        justify-content: end;
+        justify-content: flex-end;
     }
 }
 
