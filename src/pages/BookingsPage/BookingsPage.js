@@ -5,7 +5,7 @@ import './BookingPage.css';
 import apiServiceInstance from '../../connect/apiService';
 // import { useAuth } from '../../connect/AuthContext/AuthContext';
 import { useDateContext } from "../../components/DateContext/DateContext";
-
+//necesito hacer cambiooosss
 
 const BookingPage = ({ localInfo }) => {
 
