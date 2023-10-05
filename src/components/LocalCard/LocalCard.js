@@ -134,11 +134,11 @@ const LocalCard = ({ localInfo }) => {
               <div className="text-wrapper-10">
                 {editedFields.localInfo || localInfo.localInfo}
               </div>
-              <p className="element-entrada-antes-de">
+              <div className="element-entrada-antes-de">
                 <p className="local-category">Categorías: {localInfo.categories}</p>
                 <span className="local-deals">{localInfo.deals}€ - </span>
                 <span className="local-hour">{localInfo.hour}</span>
-              </p>
+              </div>
               <p className="refresco-cerveza-o"> (Refresco, cerveza, copa, etc )</p>
               <div className="text-wrapper-10">{localInfo.discoName}</div>
               <p className="text-wrapper-11">{localInfo.ubication}</p>

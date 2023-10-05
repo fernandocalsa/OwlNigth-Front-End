@@ -25,8 +25,11 @@ const ListCards = ({ isProManager, customStyle }) => {
       <div className="list-cards-locals" style={customStyle}>
         <div className="frame-list-cards">
           <div className="local-card-list" style={customStyle}>
-            {locals.map((local) => (
+            {/* {locals.map((local) => (
               <LocalCard key={local.id} localInfo={local} />
+            ))} */}
+            {locals.map((local, index) => (
+              <LocalCard key={index} localInfo={local} />
             ))}
           </div>
         </div>
